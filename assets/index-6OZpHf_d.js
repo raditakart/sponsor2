@@ -70,6 +70,11 @@ Please change the parent <Route path="${z}"> to <Route path="${z==="/"?"*":`${z}
           --dark3:   #141820;
           --card:    #1A202C;
           --border:  rgba(255,255,255,0.07);
+          --gray:    #8A96A8;
+          --muted:   #C4CCD8;
+          --white:   #FFFFFF;
+          --accent:  #00C2FF;
+        }
         /* DAYS UNTIL EVENT COUNTER */
         .days-until-event {
           display: flex;
