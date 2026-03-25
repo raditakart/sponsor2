@@ -140,6 +140,78 @@ export default function LegacyProposalPage() {
     };
   }, [parsedPage]);
 
+  useEffect(() => {
+    if (!parsedPage) {
+      return undefined;
+    }
+
+    const legacyRoot = document.querySelector('.legacy-page');
+    if (!legacyRoot) {
+      return undefined;
+    }
+
+    legacyRoot.querySelectorAll('.proposal-growth-card, .proposal-inline-highlight').forEach((node) => node.remove());
+
+    const valueCardHeading = Array.from(legacyRoot.querySelectorAll('h4')).find((node) => {
+      const text = (node.textContent || '').toLowerCase();
+      return text.includes('early = affordable + long-term');
+    });
+
+    if (valueCardHeading) {
+      const baseCard = valueCardHeading.closest('.why-item');
+      const cardParent = baseCard?.parentElement;
+
+      if (baseCard && cardParent) {
+        const growthCard = baseCard.cloneNode(true);
+        growthCard.classList.add('proposal-growth-card');
+
+        const cardTitle = growthCard.querySelector('h4');
+        if (cardTitle) {
+          cardTitle.textContent = 'Strong Social Reach';
+        }
+
+        const cardText = growthCard.querySelector('p');
+        if (cardText) {
+          cardText.textContent = 'Tens of thousands of monthly views and 5,500+ combined followers across TikTok and Instagram.';
+        }
+
+        cardParent.appendChild(growthCard);
+
+        return () => {
+          growthCard.remove();
+        };
+      }
+    }
+
+    const highlight = document.createElement('div');
+    highlight.className = 'proposal-inline-highlight';
+    highlight.setAttribute('role', 'note');
+    highlight.textContent = 'Averaging tens of thousands of views per month and 5,500+ combined followers across TikTok and Instagram.';
+
+    const headingCandidates = Array.from(legacyRoot.querySelectorAll('h1, h2, h3, h4, .title, .section-title'));
+    const whyBackMeHeading = headingCandidates.find((node) => {
+      const text = (node.textContent || '').toLowerCase().replace(/\s+/g, ' ');
+      return text.includes('why') && text.includes('back') && text.includes('me');
+    });
+
+    const target =
+      whyBackMeHeading?.parentElement ||
+      legacyRoot.querySelector('#s1 .cover-content') ||
+      legacyRoot.querySelector('#s1') ||
+      legacyRoot.querySelector('.slide') ||
+      legacyRoot;
+
+    if (whyBackMeHeading?.nextSibling) {
+      target.insertBefore(highlight, whyBackMeHeading.nextSibling);
+    } else {
+      target.appendChild(highlight);
+    }
+
+    return () => {
+      highlight.remove();
+    };
+  }, [parsedPage]);
+
   if (!parsedPage) {
     return <div className="route-loading">Loading proposal...</div>;
   }

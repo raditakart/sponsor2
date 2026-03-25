@@ -1,7 +1,14 @@
+import { motion } from 'framer-motion';
+
 export default function ContactPage() {
   return (
     <main className="page page-accent">
-      <section className="hero-panel contact-hero">
+      <motion.section
+        className="hero-panel contact-hero"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
         <div>
           <p className="hero-kicker">Contact</p>
           <h1>Let&apos;s talk about a sponsorship fit.</h1>
@@ -18,28 +25,62 @@ export default function ContactPage() {
             Back to proposal
           </a>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="grid-panel contact-grid">
-        <article className="info-card contact-card">
+      <motion.section
+        className="grid-panel contact-grid"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.2
+            }
+          }
+        }}
+      >
+        <motion.article
+          className="info-card contact-card"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 }
+          }}
+            transition={{ duration: 0.5 }}
+        >
           <span>Direct contact</span>
           <h2>Alexandru Radita</h2>
           <p>Phone: +40 761 636 161</p>
           <p>Best for first contact, sponsor discussions, and proposal follow-up.</p>
-        </article>
-        <article className="info-card contact-card">
+        </motion.article>
+        <motion.article
+          className="info-card contact-card"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 }
+          }}
+          transition={{ duration: 0.5 }}
+        >
           <span>Team</span>
           <h2>Formula K Romania</h2>
           <p>Category: Rotax Max Challenge Senior</p>
           <p>Use this route to frame the project clearly when discussing partnership scope.</p>
-        </article>
-        <article className="info-card contact-card">
+        </motion.article>
+        <motion.article
+          className="info-card contact-card"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 }
+          }}
+          transition={{ duration: 0.5 }}
+        >
           <span>What to include</span>
           <h2>Your inquiry</h2>
           <p>Company name, budget range, preferred visibility, and target campaign period.</p>
           <p>This makes it easier to respond with a relevant package instead of a generic answer.</p>
-        </article>
-      </section>
+        </motion.article>
+      </motion.section>
 
       <section className="cta-panel contact-summary">
         <div>
@@ -47,9 +88,7 @@ export default function ContactPage() {
           <h2>National and international karting exposure.</h2>
         </div>
         <p>
-          Sponsorship conversations can now live on a dedicated page instead of being mixed into the
-          proposal deck. If needed, this page can be expanded next with a contact form, media assets,
-          or sponsor FAQ sections.
+          
         </p>
       </section>
     </main>
