@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "build": "vite build",
+    "start": "node scripts/use-source-index.mjs && vite",
+    "dev": "node scripts/use-source-index.mjs && vite",
+    "build": "node scripts/use-source-index.mjs && vite build",
+    "postbuild": "node scripts/sync-dist-to-root.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
