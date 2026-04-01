@@ -23,19 +23,30 @@ export default function AboutPage({ language = 'en' }) {
   const copy = language === 'ro'
     ? {
         heroEyebrow: 'Pilot profesionist de karting',
-        heroDesc: 'Concurez in Rotax Max Challenge — Senior. Reprezint Formula K Romania cu focus pe precizie, viteza si performanta constanta la nivel inalt.',
-        heroBtn: 'Vezi oportunitati de parteneriat',
-        driverEyebrow: 'Pilotul',
-        driverTitle: 'La Volan',
-        p1: 'Alexandru Radita este un pilot de 14 ani din Romania, care concureaza in categoria Rotax Max Challenge — Senior.',
-        p2: 'Reprezentand Formula K Romania, Alex s-a impus ca un concurent serios pe plan national, cunoscut pentru feedbackul tehnic si ritmul de cursa.',
-        p3: 'Obiectivul pentru sezonul 2026 ramane podiumul, printr-o abordare disciplinata a pregatirii fizice si tehnice.',
+        heroDesc: 'Pilot de curse din Romania',
+        heroBtn: 'Afla mai mult',
+        driverEyebrow: '01 · Povestea mea',
+        driverTitle: 'Despre',
+        driverTitleAccent: 'Mine',
+        p1: 'Ma numesc Alexandru Radita, iar prima data cand am urcat intr-un kart a fost in februarie 2024, la 12 ani. Nu mai condusesem niciodata pana atunci, dar din primul tur am stiut ca asta vreau sa fac. Am inceput sa merg saptamanal, iar in cateva luni ajunsesem in top split pe leaderboard-urile de rentals.',
+        p2: 'In vara lui 2024 am participat la primul meu test camp profesionist - cinci zile alaturi de piloti si antrenori experimentati. Sunt convins ca am fost cel mai rapid pilot de acolo. Dar la acel moment nu ne permiteam sa concuram profesionist, asa ca am continuat: rentals, sprint races, progres in fiecare saptamana.',
+        p3: 'In iunie 2025, totul s-a schimbat. Am primit o oportunitate reala de test, iar potentialul meu a fost remarcat imediat. Am petrecut toata vara cu cinci zile de test pe saptamana, pregatindu-mi debutul in Rotax Max Challenge Romania.',
+        p4: 'De atunci am concurat in patru etape nationale si doua evenimente internationale in Italia - ROK Winter Trophy la Lonato si etapa RMC Central & Eastern Europe la Jesolo. Am trecut de la primul kart la curse pe circuite europene in doar doi ani, iar asta e doar inceputul.',
+        cardMeta: 'Romania · 14 ani',
+        statYears: '2',
+        statYearsUnit: 'ani',
+        statYearsLabel: 'De la primul kart',
+        statBest: 'P6',
+        statBestLabel: 'Cea mai buna clasare',
+        statNational: '4',
+        statNationalLabel: 'Curse nationale',
+        statIntl: '2',
+        statIntlLabel: 'Curse internationale',
+        newsKicker: 'Noutati',
+        newsTitle: 'Ultimele stiri',
+        read: 'Citeste articolul',
         age: 'Varsta',
         nationality: 'Nationalitate',
-        nextEyebrow: 'Urmatorul eveniment',
-        autoAdvance: 'Aceasta sectiune trece automat la urmatorul eveniment programat dupa incheierea celui curent.',
-        daysLeft: 'zile ramase',
-        dayLeft: 'zi ramasa',
         recordEyebrow: 'Rezultate',
         recordTitle: 'Performanta in sezon',
         qualifying: 'Calificari',
@@ -49,19 +60,30 @@ export default function AboutPage({ language = 'en' }) {
       }
     : {
         heroEyebrow: 'Professional Karting Driver',
-        heroDesc: 'Competing in the Rotax Max Challenge — Senior. Representing Formula K Romania with a focus on precision, speed, and consistent top-tier performance.',
-        heroBtn: 'View Partenership Oportunities',
-        driverEyebrow: 'The Driver',
-        driverTitle: 'Behind the Wheel',
-        p1: 'Alexandru Radita is a 14-year-old racing driver from Romania, currently competing in the Rotax Max Challenge — Senior category.',
-        p2: 'Representing Formula K Romania, Alex has established himself as a serious contender on the national circuit, known for his technical feedback and race-winning pace.',
-        p3: 'His focus for the 2026 season remains on the podium, utilizing a disciplined approach to both physical training and technical preparation with the team.',
+        heroDesc: 'Racing driver from Romania',
+        heroBtn: 'Learn more',
+        driverEyebrow: '01 · My Story',
+        driverTitle: 'About',
+        driverTitleAccent: 'Me',
+        p1: 'My name is Alexandru Radita, and I first sat in a kart in February 2024, aged 12. I had never done it before, but the moment I got on track, I knew this was what I wanted to do with my life. I started going every week, and within months I was at the top split of the rental leaderboards.',
+        p2: 'In the summer of 2024, I attended my first professional test camp - five days with experienced drivers and coaches. I am confident I was the quickest driver there. But at the time, we could not afford to race professionally. So I kept showing up, kept doing rentals and sprint races, kept getting faster.',
+        p3: 'In June 2025, everything changed. I was given a serious test opportunity and my potential was recognised immediately. I spent the entire summer doing five test days a week to prepare, and made my competitive debut in the Rotax Max Challenge Romania shortly after.',
+        p4: 'Since then I have raced in four national rounds and two international events in Italy - the ROK Winter Trophy in Lonato and the RMC Central & Eastern European round in Jesolo. I went from never having driven a kart to racing on European circuits in just two years, and this is only the beginning.',
+        cardMeta: 'Romania · Age 14',
+        statYears: '2',
+        statYearsUnit: 'yrs',
+        statYearsLabel: 'Since First Kart',
+        statBest: 'P6',
+        statBestLabel: 'Best Race Finish',
+        statNational: '4',
+        statNationalLabel: 'National Races',
+        statIntl: '2',
+        statIntlLabel: 'Intl. Races',
+        newsKicker: 'News',
+        newsTitle: 'Latest Articles',
+        read: 'Read Article',
         age: 'Age',
         nationality: 'Nationality',
-        nextEyebrow: 'Next Event',
-        autoAdvance: 'This section automatically advances to the next scheduled event once the current event has passed.',
-        daysLeft: 'days left',
-        dayLeft: 'day left',
         recordEyebrow: 'Track Record',
         recordTitle: 'Season Performance',
         qualifying: 'Qualifying',
@@ -74,60 +96,35 @@ export default function AboutPage({ language = 'en' }) {
         phone: 'Phone',
       };
 
-  const calendarEvents = [
-    { date: '21-22 FEB', name: 'ROK WINTER TROPHY', location: 'South Garda Karting', layoutImage: '/images/layout-south-garda.jpg' },
-    { date: '27 FEB - 1 MAR', name: 'RMC CE 1', location: 'Jesolo', layoutImage: '/images/layout-jesolo.jpg' },
-    { date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer', layoutImage: '/images/layout-prejmer.png' },
-    { date: '29-31 MAY', name: 'RMC RO 2', location: 'București', layoutImage: '/images/layout-bucuresti.jpg' },
-    { date: '12-14 JUN', name: 'RMC RO 3', location: 'București', layoutImage: '/images/layout-bucuresti.jpg' },
-    { date: '3-5 JUL', name: 'RMC RO 4', location: 'Târgu Secuiesc', layoutImage: '/images/layout-targu-secuesc.jpg' },
-    { date: '28-30 AUG', name: 'RMC RO 5', location: 'Târgu Secuiesc', layoutImage: '/images/layout-targu-secuesc.jpg' },
-    { date: '4-6 SEP', name: 'TRANSYLVANIAN TROPHY', location: 'Prejmer', layoutImage: '/images/layout-prejmer.jpg' },
-    { date: '25-27 SEP', name: 'RMC RO 6', location: 'București', layoutImage: '/images/layout-bucuresti.jpg' },
-    { date: '13-17 OCT', name: 'ROK SUPERFINAL', location: 'South Garda Karting', layoutImage: '/images/layout-south-garda.jpg' },
-    { date: '7-9 NOV', name: 'MOJO TROPHY', location: 'Jesolo', layoutImage: '/images/layout-jesolo.jpg' },
+  const articles = [
+    {
+      id: 1,
+      title: 'Rotax Max Challenge Romania, Etapa 3 – O etapă cu de toate pentru Alexandru Radita',
+      date: 'August 29, 2025',
+      source: 'Apex Motorsport News',
+      excerpt: 'Etapa 3 din Rotax Max Challenge Romania s-a desfășurat la AMC Kart, fiind o nouă etapă cu multe momente interesante și dueluri spectaculoase la toate clasele.',
+      image: 'https://apexmotorsportnews.ro/wp-content/uploads/2025/08/WhatsApp-Image-2025-08-15-at-12.35.40.jpeg',
+      link: 'https://apexmotorsportnews.ro/rotax-max-challenge-romania-etapa-3-o-etapa-cu-de-toate-pentru-alexandru-radita/',
+    },
+    {
+      id: 2,
+      title: 'Rotax Max Challenge Etapa 4 – Weekend perfect pentru Alex Radita',
+      date: 'September 9, 2025',
+      source: 'Apex Motorsport News',
+      excerpt: 'Etapa 4 din Rotax Max Challenge Romania a fost un weekend perfect pentru Alexandru Radita, cu performanțe remarcabile în ambele curse.',
+      image: 'https://apexmotorsportnews.ro/wp-content/uploads/2025/09/a12a85cf-d332-42cf-9eb7-38657b7f290f.jpg',
+      link: 'https://apexmotorsportnews.ro/rotax-max-challenge-etapa-4-weekend-perfect-pentru-alex-radita/',
+    },
+    {
+      id: 3,
+      title: 'Premiera F1: The movie',
+      date: 'June 27, 2025',
+      source: 'Apex Motorsport News',
+      excerpt: 'F1: The Movie, documentarul oficial al Formulei 1, a avut premiera în România pe 27 iunie, la Cinema City din Băneasa Shopping City, în prezența a numeroase personalități din lumea sportului cu motor.',
+      image: 'https://apexmotorsportnews.ro/wp-content/uploads/2025/07/1000023010.jpg',
+      link: 'https://apexmotorsportnews.ro/premiera-f1-the-movie/',
+    },
   ];
-
-  const monthMap = { JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11 };
-
-  const parseEventRange = (dateText) => {
-    const [rangePart, monthPart] = dateText.split(' ');
-    const [startDayText, endDayText] = rangePart.split('-');
-    const monthKey = monthPart.slice(0, 3).toUpperCase();
-    const year = new Date().getFullYear();
-    const startDay = Number(startDayText);
-    const endDay = Number(endDayText || startDayText);
-
-    const month = monthMap[monthKey] ?? 0;
-    const start = new Date(year, month, startDay);
-    const end = new Date(year, month, endDay);
-
-    return { start, end };
-  };
-
-  const getNextEvent = () => {
-    const today = new Date();
-    const next = calendarEvents.find((event) => {
-      const { end } = parseEventRange(event.date);
-      return end >= today;
-    });
-    return next || calendarEvents[calendarEvents.length - 1];
-  };
-
-
-  const nextEvent = getNextEvent();
-
-  // Calculate days until next event
-  let daysUntilEvent = null;
-  if (nextEvent) {
-    const { start } = parseEventRange(nextEvent.date);
-    const today = new Date();
-    // Zero out time for accurate day diff
-    start.setHours(0,0,0,0);
-    today.setHours(0,0,0,0);
-    const diffMs = start - today;
-    daysUntilEvent = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-  }
 
   const goToSection = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
@@ -152,27 +149,6 @@ export default function AboutPage({ language = 'en' }) {
           --muted:   #C4CCD8;
           --white:   #FFFFFF;
           --accent:  #00C2FF;
-        }
-        /* DAYS UNTIL EVENT COUNTER */
-        .days-until-event {
-          display: flex;
-          align-items: baseline;
-          gap: 10px;
-          margin: 10px 0 0 0;
-        }
-        .days-number {
-          font-family: 'Teko', sans-serif;
-          font-size: 44px;
-          font-weight: 700;
-          color: var(--red);
-          line-height: 1;
-        }
-        .days-label {
-          font-size: 16px;
-          color: var(--muted);
-          font-family: 'Barlow', sans-serif;
-          font-weight: 500;
-          margin-left: 2px;
         }
         img{display:block;max-width:100%}
 
@@ -332,7 +308,82 @@ export default function AboutPage({ language = 'en' }) {
         }
         .ds{background:var(--dark3); padding:16px;}
         .ds .n{font-family:'Teko',sans-serif; font-size:36px; font-weight:700; color:var(--white); line-height:1;}
+        .ds .n em{font-style:normal; font-size:.5em; margin-left:4px; letter-spacing:.03em; color:var(--muted)}
         .ds .l{font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-top:3px}
+
+        .about-news-wrap {
+          margin-top: 42px;
+          display: grid;
+          gap: 18px;
+        }
+
+        .about-news-wrap .news-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        @media(max-width:1100px) {
+          .about-news-wrap .news-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .about-journey-wrap {
+          margin-top: 34px;
+          border: 1px solid var(--border);
+          background: var(--dark3);
+          padding: 24px;
+        }
+
+        .about-journey-wrap .display {
+          font-size: clamp(36px, 4.6vw, 58px);
+          margin: 0 0 24px;
+        }
+
+        .about-journey-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        @media(max-width:1100px) {
+          .about-journey-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .about-journey-col {
+          display: grid;
+          gap: 12px;
+        }
+
+        .about-journey-item {
+          background: var(--card);
+          border: 1px solid var(--border);
+          border-left: 3px solid var(--red);
+          padding: 14px;
+        }
+
+        .about-journey-date {
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 12px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--red);
+        }
+
+        .about-journey-title {
+          margin-top: 6px;
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 19px;
+          color: var(--white);
+        }
+
+        .about-journey-desc {
+          margin-top: 8px;
+          font-size: 14px;
+          line-height: 1.6;
+          color: var(--muted);
+        }
 
         /* GALLERY */
         #s3{padding:0; min-height:auto; display:grid; grid-template-columns:2fr 1fr 1fr; height:520px;}
@@ -340,25 +391,6 @@ export default function AboutPage({ language = 'en' }) {
         .gallery-cell{overflow:hidden; position:relative}
         .gallery-cell img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
         .gallery-cell:hover img{transform:scale(1.05)}
-
-        .next-event-panel{
-          display:grid;
-          grid-template-columns:1.1fr 1fr;
-          gap:24px;
-          align-items:center;
-          padding:40px 32px;
-          background:var(--dark2);
-          border:1px solid var(--border);
-          border-radius:14px;
-          margin:24px 0;
-        }
-        .next-event-image{overflow:hidden; border-radius:12px; min-height:260px;}
-        .next-event-image img{width:100%; height:100%; object-fit:cover;}
-        .next-event-info{display:flex; flex-direction:column; gap:12px;}
-        @media(max-width:900px){
-          .next-event-panel{grid-template-columns:1fr;}
-          .next-event-image{min-height:200px;}
-        }
 
         /* RESULTS */
         #s4{background:var(--dark)}
@@ -386,35 +418,12 @@ export default function AboutPage({ language = 'en' }) {
         }
         .footer-logo{font-family:'Teko',sans-serif; font-size:24px; font-weight:700; color:var(--white);}
         .footer-logo span{color:var(--red)}
-
-        /* DAYS UNTIL EVENT COUNTER */
-        .days-until-event {
-          display: flex;
-          align-items: baseline;
-          gap: 10px;
-          margin: 10px 0 0 0;
-        }
-        .days-number {
-          font-family: 'Teko', sans-serif;
-          font-size: 44px;
-          font-weight: 700;
-          color: var(--red);
-          line-height: 1;
-        }
-        .days-label {
-          font-size: 16px;
-          color: var(--muted);
-          font-family: 'Barlow', sans-serif;
-          font-weight: 500;
-          margin-left: 2px;
-        }
       `}</style>
 
       <nav className="nav-dots">
         <button className="nd on" onClick={() => goToSection('s1')}></button>
         <button className="nd" onClick={() => goToSection('s2')}></button>
         <button className="nd" onClick={() => goToSection('s3')}></button>
-        <button className="nd" onClick={() => goToSection('s4')}></button>
         <button className="nd" onClick={() => goToSection('s5')}></button>
       </nav>
 
@@ -428,7 +437,9 @@ export default function AboutPage({ language = 'en' }) {
             Alexandru<br/><span>Radita</span>
           </h1>
           <p className="cover-desc">{copy.heroDesc}</p>
-          <a className="cover-proposal-btn" href="#/proposal">{copy.heroBtn}</a>
+          <button className="cover-proposal-btn" type="button" onClick={() => goToSection('s2')}>
+            {copy.heroBtn}
+          </button>
         </div>
       </section>
 
@@ -436,46 +447,109 @@ export default function AboutPage({ language = 'en' }) {
         <div className="s2-grid">
           <div className="about-content">
             <div className="eyebrow">{copy.driverEyebrow}</div>
-            <h2 className="display" style={{fontSize: '48px', marginBottom: '32px'}}>{copy.driverTitle}</h2>
+            <h2 className="display" style={{fontSize: 'clamp(44px, 6vw, 80px)', marginBottom: '48px'}}>
+              {copy.driverTitle}<br />{copy.driverTitleAccent}
+            </h2>
             <div className="about-body">
               <p>{copy.p1}</p>
               <p>{copy.p2}</p>
               <p>{copy.p3}</p>
+              <p>{copy.p4}</p>
             </div>
           </div>
 
           <div className="driver-card">
             <img src="/images/alexandru-portrait.JPG" alt="Alexandru Radita portrait" />
             <div className="driver-card-body">
-              <div className="driver-name">Alexandru <span>Radita</span></div>
-              <div className="driver-meta">Rotax Max Senior · #14</div>
+              <div className="driver-name">Alex <span>Radita</span></div>
+              <div className="driver-meta">{copy.cardMeta}</div>
               <div className="driver-stats">
-                <div className="ds"><div className="n">14</div><div className="l">{copy.age}</div></div>
-                <div className="ds"><div className="n">ROU</div><div className="l">{copy.nationality}</div></div>
+                <div className="ds"><div className="n">{copy.statYears}<em>{copy.statYearsUnit}</em></div><div className="l">{copy.statYearsLabel}</div></div>
+                <div className="ds"><div className="n">{copy.statBest}</div><div className="l">{copy.statBestLabel}</div></div>
+                <div className="ds"><div className="n">{copy.statNational}</div><div className="l">{copy.statNationalLabel}</div></div>
+                <div className="ds"><div className="n">{copy.statIntl}</div><div className="l">{copy.statIntlLabel}</div></div>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-
-      <section className="slide" id="s2a">
-        <div className="next-event-panel">
-          <div className="next-event-image">
-            <img src={nextEvent.layoutImage ?? '/images/layout-default.jpg'} alt="Track layout" />
-          </div>
-          <div className="next-event-info">
-            <div className="eyebrow">{copy.nextEyebrow}</div>
-            <h2 className="display" style={{ fontSize: '40px', marginBottom: '18px' }}>{nextEvent.name}</h2>
-            <p className="about-body">{nextEvent.date} · {nextEvent.location}</p>
-            {typeof daysUntilEvent === 'number' && daysUntilEvent >= 0 && (
-              <div className="days-until-event">
-                <span className="days-number">{daysUntilEvent}</span>
-                <span className="days-label">{daysUntilEvent === 1 ? copy.dayLeft : copy.daysLeft}</span>
+        <div className="about-news-wrap">
+          <section className="about-journey-wrap">
+            <div className="eyebrow">02 · Career</div>
+            <h3 className="display">My Journey</h3>
+            <div className="about-journey-grid">
+              <div className="about-journey-col">
+                <article className="about-journey-item">
+                  <div className="about-journey-date">February 2024</div>
+                  <div className="about-journey-title">I Drive a Kart for the First Time</div>
+                  <p className="about-journey-desc">Age 12, first rental session. I was immediately hooked. I started going every week and quickly worked my way to the top split of the leaderboards.</p>
+                </article>
+                <article className="about-journey-item">
+                  <div className="about-journey-date">Summer 2024</div>
+                  <div className="about-journey-title">First Professional Test Camp</div>
+                  <p className="about-journey-desc">Five days with a professional team. No laptimes shared, but I came away knowing I belonged at this level. We just needed to find a way to make it happen financially.</p>
+                </article>
+                <article className="about-journey-item">
+                  <div className="about-journey-date">2024-June 2025</div>
+                  <div className="about-journey-title">Grinding - Rentals and Sprint Races</div>
+                  <p className="about-journey-desc">While we figured out funding, I kept racing. Sprint races, rentals, every session I could get. Building pace and experience one lap at a time.</p>
+                </article>
+                <article className="about-journey-item">
+                  <div className="about-journey-date">June 2025</div>
+                  <div className="about-journey-title">My First Professional Opportunity</div>
+                  <p className="about-journey-desc">I test with a new team. They see something. We agree to race together and I immediately begin an intensive block of five test days per week ahead of my debut.</p>
+                </article>
               </div>
-            )}
-            <p className="about-body">{copy.autoAdvance}</p>
+
+              <div className="about-journey-col">
+                <article className="about-journey-item">
+                  <div className="about-journey-date">Summer 2025</div>
+                  <div className="about-journey-title">My Racing Debut - RMC Romania</div>
+                  <p className="about-journey-desc">I qualify P12 from 18 on debut and score P8 in my very first Final. For a first competitive race with a full professional setup, I was happy with that.</p>
+                </article>
+                <article className="about-journey-item">
+                  <div className="about-journey-date">Summer-Autumn 2025</div>
+                  <div className="about-journey-title">National Season - 3 More Rounds</div>
+                  <p className="about-journey-desc">I complete the full national championship including the Transylvania Trophy, qualifying inside the top 7 at every event. Consistency I am proud of as a full rookie.</p>
+                </article>
+                <article className="about-journey-item">
+                  <div className="about-journey-date">February 2026</div>
+                  <div className="about-journey-title">First International Race - ROK Lonato</div>
+                  <p className="about-journey-desc">My first time on an international circuit. South Garda Karting, Lonato. Against Europe&apos;s best junior karters. Steep learning curve, but I would come back.</p>
+                </article>
+                <article className="about-journey-item">
+                  <div className="about-journey-date">March 2026</div>
+                  <div className="about-journey-title">RMC Central and Eastern Europe - Jesolo</div>
+                  <p className="about-journey-desc">My second international event. I finished Heat 4 P11 in group against 70+ drivers, the result that told me I can compete at this level. More to come.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <div>
+            <div className="eyebrow">{copy.newsKicker}</div>
+            <h3 className="display" style={{ fontSize: '42px', margin: 0 }}>{copy.newsTitle}</h3>
           </div>
+          <section className="news-grid">
+            {articles.map((article) => (
+              <article key={article.id} className="news-card">
+                <div className="news-image">
+                  <img src={article.image} alt={article.title} />
+                </div>
+                <div className="news-content">
+                  <div className="news-meta">
+                    <span className="news-date">{article.date}</span>
+                    <span className="news-source">{article.source}</span>
+                  </div>
+                  <h2>{article.title}</h2>
+                  <p>{article.excerpt}</p>
+                  <a href={article.link} className="news-link" target="_blank" rel="noreferrer">
+                    {copy.read}
+                  </a>
+                </div>
+              </article>
+            ))}
+          </section>
         </div>
       </section>
 
@@ -491,32 +565,10 @@ export default function AboutPage({ language = 'en' }) {
         </div>
       </section>
 
-      <section className="slide" id="s4">
-        <div className="eyebrow">{copy.recordEyebrow}</div>
-        <h2 className="display" style={{fontSize: '48px', marginBottom: '48px'}}>{copy.recordTitle}</h2>
-        <div className="results-wrap">
-          <div className="rc">
-            <div className="flag-line">ROK WINTER CUP</div>
-            <h3>ROK Senior </h3>
-            <div className="rrow"><span className="stage">{copy.qualifying}</span><span className="pos">P32</span></div>
-            <div className="rrow"><span className="stage">{copy.grid}</span><span className="pos">P35</span></div>
-            <div className="rrow"><span className="stage">{copy.final}</span><span className="pos">DSQ</span></div>
-          </div>
-          <div className="rc">
-            <div className="flag-line">ROTAX CE 1 </div>
-            <h3>Rotax Max Senior</h3>
-            <div className="rrow"><span className="stage">{copy.qualifying}</span><span className="pos">P23</span></div>
-            <div className="rrow"><span className="stage">{copy.heat4}</span><span className="pos">P11</span></div>
-            <div className="rrow"><span className="stage">{copy.race}</span><span className="pos">P67</span></div>
-          </div>
-        </div>
-      </section>
-
       <section className="slide" id="s5">
         <div className="contact-body">
           <h2 className="contact-head">{copy.touch.split(' ')[0]} <em>{copy.touch.split(' ').slice(1).join(' ')}</em></h2>
           <div className="cdetails">
-            <div className="ci"><label>{copy.team}</label><strong>Formula K Romania</strong></div>
             <div className="ci"><label>{copy.phone}</label><strong>+40 761636161</strong></div>
             <div className="ci"><label>Nationality</label><strong>Romanian 🇷🇴</strong></div>
           </div>

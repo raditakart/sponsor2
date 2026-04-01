@@ -506,6 +506,66 @@ a {
   margin-top: 16px;
 }
 
+.calendar-next-event-panel {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 34px;
+}
+
+.calendar-next-event-image {
+  overflow: hidden;
+  border-radius: 16px;
+  min-height: 250px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.calendar-next-event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.calendar-next-event-info {
+  display: grid;
+  gap: 12px;
+}
+
+.calendar-next-event-info h2 {
+  margin: 0;
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  line-height: 0.95;
+  font-size: clamp(32px, 4vw, 56px);
+}
+
+.calendar-next-event-info p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.days-until-event {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.days-number {
+  font-family: 'Teko', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--hot);
+  line-height: 1;
+}
+
+.days-label {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
 .calendar-event-list-items {
   list-style: none;
   margin: 0;
@@ -685,8 +745,13 @@ a {
 
   .grid-panel,
   .cta-panel,
-  .contact-grid {
+  .contact-grid,
+  .calendar-next-event-panel {
     grid-template-columns: 1fr;
+  }
+
+  .calendar-next-event-image {
+    min-height: 200px;
   }
 
   .contact-actions {

@@ -4,14 +4,12 @@ import AboutPage from './pages/AboutPage';
 import CalendarPage from './pages/CalendarPage';
 import PartnersPage from './pages/PartnersPage';
 import MediaKitPage from './pages/MediaKitPage';
-import NewsPage from './pages/NewsPage';
 import LegacyProposalPage from './pages/LegacyProposalPage';
 
 const navCopy = {
   en: {
     about: 'About',
     partners: 'Partners',
-    news: 'News',
     proposal: 'Proposal',
     calendar: 'Calendar',
     contact: 'Contact',
@@ -19,7 +17,6 @@ const navCopy = {
   ro: {
     about: 'Despre',
     partners: 'Parteneri',
-    news: 'Noutati',
     proposal: 'Propunere',
     calendar: 'Calendar',
     contact: 'Contact',
@@ -57,12 +54,6 @@ function Navbar({ language, onLanguageChange }) {
           </NavLink>
           <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/partners">
             {copy.partners}
-          </NavLink>
-          <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/news">
-            {copy.news}
-          </NavLink>
-          <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/proposal">
-            {copy.proposal}
           </NavLink>
           <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/calendar">
             {copy.calendar}
@@ -104,11 +95,11 @@ export default function App() {
             <Route path="/calendar" element={<CalendarPage language={language} />} />
             <Route path="/partners" element={<PartnersPage language={language} />} />
             <Route path="/contact" element={<MediaKitPage language={language} />} />
-            <Route path="/news" element={<NewsPage language={language} />} />
             <Route path="/proposal" element={<LegacyProposalPage language={language} />} />
 
             <Route path="/media-kit" element={<Navigate to="/contact" replace />} />
             <Route path="/legacy" element={<Navigate to="/proposal" replace />} />
+            <Route path="/news" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
       </div>
