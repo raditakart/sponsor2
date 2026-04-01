@@ -1,4 +1,23 @@
-export default function CalendarPage() {
+export default function CalendarPage({ language = 'en' }) {
+  const copy = language === 'ro'
+    ? {
+        kicker: 'Calendar',
+        title: 'Calendar Sezon 2026',
+        subtitle: 'Urmareste toate datele, seriile si locatiile de curse din 2026.',
+        focusKicker: 'Focus Sezon',
+        focusTitle: 'De la winter trophy pana la etapele finale Superfinal.',
+        focusBody: 'Sezonul include evenimente nationale si internationale, cu vizibilitate puternica in Romania si pe circuite cheie din Europa.',
+        disclaimer: '*sub rezerva modificarilor',
+      }
+    : {
+        kicker: 'Calendar',
+        title: '2026 Racing Season Calendar',
+        subtitle: 'Track all race dates, series, and venues for 2026.',
+        focusKicker: 'Season Focus',
+        focusTitle: 'From winter trophy to the final Superfinal stages.',
+        focusBody: 'This season includes both national and international events, with strong visibility in Romania and key European circuits.',
+        disclaimer: '*subject to change',
+      };
   const events = [
     { date: '21-22 FEB', name: 'ROK WINTER TROPHY', location: 'South Garda Karting' },
     { date: '27 FEB - 1 MAR', name: 'RMC CE 1', location: 'Jesolo' },
@@ -17,12 +36,10 @@ export default function CalendarPage() {
     <main className="page page-accent page-calendar">
       <section className="hero-panel calendar-hero">
         <div>
-          <p className="hero-kicker">Calendar</p>
-          <h1>2026 Racing Season Calendar</h1>
+          <p className="hero-kicker">{copy.kicker}</p>
+          <h1>{copy.title}</h1>
         </div>
-        <p className="hero-copy">
-          Track all race dates, series, and venues for 2026.
-        </p>
+        <p className="hero-copy">{copy.subtitle}</p>
       </section>
 
       <section className="calendar-event-list">
@@ -39,18 +56,16 @@ export default function CalendarPage() {
             </li>
           ))}
         </ol>
-        <p className="calendar-disclaimer">*subject due to change</p>
+        <p className="calendar-disclaimer">{copy.disclaimer}</p>
       </section>
 
       <section className="cta-panel calendar-summary">
         <div>
-          <p className="hero-kicker">Season Focus</p>
-          <h2>From winter trophy to the final Superfinal stages.</h2>
+          <p className="hero-kicker">{copy.focusKicker}</p>
+          <h2>{copy.focusTitle}</h2>
         </div>
-        <p>
-          This season includes both national and international events, with strong visibility in Romania and key European circuits.
-        </p>
-        <p className="calendar-disclaimer">*subject to change</p>
+        <p>{copy.focusBody}</p>
+        <p className="calendar-disclaimer">{copy.disclaimer}</p>
       </section>
     </main>
   );

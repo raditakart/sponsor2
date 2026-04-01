@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { HashRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import CalendarPage from './pages/CalendarPage';
@@ -6,7 +7,28 @@ import MediaKitPage from './pages/MediaKitPage';
 import NewsPage from './pages/NewsPage';
 import LegacyProposalPage from './pages/LegacyProposalPage';
 
-function Navbar() {
+const navCopy = {
+  en: {
+    about: 'About',
+    partners: 'Partners',
+    news: 'News',
+    proposal: 'Proposal',
+    calendar: 'Calendar',
+    contact: 'Contact',
+  },
+  ro: {
+    about: 'Despre',
+    partners: 'Parteneri',
+    news: 'Noutati',
+    proposal: 'Propunere',
+    calendar: 'Calendar',
+    contact: 'Contact',
+  },
+};
+
+function Navbar({ language, onLanguageChange }) {
+  const copy = navCopy[language] ?? navCopy.en;
+
   return (
     <header className="app-nav-wrap">
       <nav className="app-nav">
@@ -31,23 +53,30 @@ function Navbar() {
 
         <div className="app-nav-links">
           <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/" end>
-            About
+            {copy.about}
           </NavLink>
           <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/partners">
-            Partners
+            {copy.partners}
           </NavLink>
           <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/news">
-            News
+            {copy.news}
           </NavLink>
           <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/proposal">
-            Proposal
+            {copy.proposal}
           </NavLink>
           <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/calendar">
-            Calendar
+            {copy.calendar}
           </NavLink>
           <NavLink className={({ isActive }) => `app-nav-link${isActive ? ' active' : ''}`} to="/contact">
-            Contact
+            {copy.contact}
           </NavLink>
+
+          <div className="lang-switch" aria-label="Language selection">
+            <select value={language} onChange={(event) => onLanguageChange(event.target.value)}>
+              <option value="en">EN</option>
+              <option value="ro">RO</option>
+            </select>
+          </div>
         </div>
       </nav>
     </header>
@@ -55,18 +84,28 @@ function Navbar() {
 }
 
 export default function App() {
+  const [language, setLanguage] = useState(() => {
+    const savedLanguage = localStorage.getItem('site-language');
+    return savedLanguage === 'ro' ? 'ro' : 'en';
+  });
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    localStorage.setItem('site-language', language);
+  }, [language]);
+
   return (
     <HashRouter>
       <div className="app-shell">
-        <Navbar />
+        <Navbar language={language} onLanguageChange={setLanguage} />
         <div className="app-main">
           <Routes>
-            <Route path="/" element={<AboutPage />} />
-            <Route path="/calendar" element={<CalendarPage />} />
-            <Route path="/partners" element={<PartnersPage />} />
-            <Route path="/contact" element={<MediaKitPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/proposal" element={<LegacyProposalPage />} />
+            <Route path="/" element={<AboutPage language={language} />} />
+            <Route path="/calendar" element={<CalendarPage language={language} />} />
+            <Route path="/partners" element={<PartnersPage language={language} />} />
+            <Route path="/contact" element={<MediaKitPage language={language} />} />
+            <Route path="/news" element={<NewsPage language={language} />} />
+            <Route path="/proposal" element={<LegacyProposalPage language={language} />} />
 
             <Route path="/media-kit" element={<Navigate to="/contact" replace />} />
             <Route path="/legacy" element={<Navigate to="/proposal" replace />} />

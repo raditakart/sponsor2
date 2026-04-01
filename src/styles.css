@@ -98,6 +98,27 @@ a {
   gap: 10px;
 }
 
+.lang-switch {
+  margin-left: 4px;
+}
+
+.lang-switch select {
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.lang-switch select:hover {
+  border-color: rgba(232, 0, 29, 0.45);
+}
+
 .app-nav-link {
   padding: 10px 14px;
   border: 1px solid transparent;
@@ -652,6 +673,10 @@ a {
 
   .app-nav-links {
     flex-wrap: wrap;
+  }
+
+  .lang-switch {
+    margin-left: 0;
   }
 
   .hero-panel {

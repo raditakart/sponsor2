@@ -30,17 +30,32 @@ const articles = [
   },
 ];
 
-export default function NewsPage() {
+export default function NewsPage({ language = 'en' }) {
+  const copy = language === 'ro'
+    ? {
+        kicker: 'Noutati & Articole',
+        title: 'Ultimele noutati de pe circuit',
+        subtitle: 'Fii la curent cu cele mai noi stiri, informatii si aparitii despre sezonul lui Alexandru Radita.',
+        read: 'Citeste articolul',
+        ctaTitle: 'Ai o poveste de publicat?',
+        ctaBody: 'Jurnalistii, partenerii media si creatorii de continut sunt invitati sa ne contacteze pentru oportunitati de presa, interviuri sau acoperire exclusiva.',
+      }
+    : {
+        kicker: 'News & Articles',
+        title: 'Latest from the track',
+        subtitle: "Stay updated with the latest news, insights, and coverage of Alexandru Radita's racing season and professional achievements.",
+        read: 'Read Article',
+        ctaTitle: 'Have a Story to Share?',
+        ctaBody: 'Journalists, media partners, and content creators are welcome to reach out. Contact us to discuss press opportunities, interviews, or exclusive coverage.',
+      };
   return (
     <main className="page page-accent news-page">
       <section className="hero-panel news-hero">
         <div>
-          <p className="hero-kicker">News & Articles</p>
-          <h1>Latest from the track</h1>
+          <p className="hero-kicker">{copy.kicker}</p>
+          <h1>{copy.title}</h1>
         </div>
-        <p className="hero-copy">
-          Stay updated with the latest news, insights, and coverage of Alexandru Radita's racing season and professional achievements.
-        </p>
+        <p className="hero-copy">{copy.subtitle}</p>
       </section>
 
       <section className="news-grid">
@@ -64,7 +79,7 @@ export default function NewsPage() {
               <h2>{article.title}</h2>
               <p>{article.excerpt}</p>
               <a href={article.link} className="news-link" target="_blank" rel="noreferrer">
-                Read Article
+                {copy.read}
               </a>
             </div>
           </motion.article>
@@ -72,10 +87,8 @@ export default function NewsPage() {
       </section>
 
       <section className="cta-panel news-cta">
-        <h2>Have a Story to Share?</h2>
-        <p>
-          Journalists, media partners, and content creators are welcome to reach out. Contact us to discuss press opportunities, interviews, or exclusive coverage.
-        </p>
+        <h2>{copy.ctaTitle}</h2>
+        <p>{copy.ctaBody}</p>
       </section>
     </main>
   );

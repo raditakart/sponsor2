@@ -26,17 +26,32 @@ const partners = [
   },
 ];
 
-export default function PartnersPage() {
+export default function PartnersPage({ language = 'en' }) {
+  const copy = language === 'ro'
+    ? {
+        kicker: 'Parteneri',
+        title: 'Sponsori oficiali si parteneri tehnici 2026',
+        subtitle: 'Sustinut de specialisti de top in logistica, transport si inginerie pentru sezonul de curse al lui Alexandru Radita.',
+        ctaTitle: 'Intra in echipa',
+        ctaBody: 'Vrei parteneriat pentru sezonul 2026? Contacteaza-ne pentru activari de brand, coordonare logistica si expunere la circuit.',
+        visit: 'Viziteaza site-ul',
+      }
+    : {
+        kicker: 'Partners',
+        title: 'Official sponsors and technical partners 2026',
+        subtitle: 'Proudly supported by world-class logistics, transport and engineering specialists fueling Alexandru Radita’s racing season.',
+        ctaTitle: 'Join the Team',
+        ctaBody: 'Interested in partnering for the 2026 season? Reach out via Contact to explore branded activation, logistics coordination, and trackside exposure.',
+        visit: 'Visit website',
+      };
   return (
     <main className="page page-accent partners-page">
       <section className="hero-panel partners-hero">
         <div>
-          <p className="hero-kicker">Partners</p>
-          <h1>Official sponsors and technical partners 2026</h1>
+          <p className="hero-kicker">{copy.kicker}</p>
+          <h1>{copy.title}</h1>
         </div>
-        <p className="hero-copy">
-          Proudly supported by world-class logistics, transport and engineering specialists fueling Alexandru Radita’s racing season.
-        </p>
+        <p className="hero-copy">{copy.subtitle}</p>
       </section>
 
       <section className="partner-grid">
@@ -65,7 +80,7 @@ export default function PartnersPage() {
               <h2>{partner.name}</h2>
               <p>{partner.description}</p>
               <a href={partner.website} target="_blank" rel="noreferrer" className="partner-link">
-                Visit website
+                {copy.visit}
               </a>
             </div>
           </motion.article>
@@ -73,10 +88,8 @@ export default function PartnersPage() {
       </section>
 
       <section className="cta-panel partners-cta">
-        <h2>Join the Team</h2>
-        <p>
-          Interested in partnering for the 2026 season? Reach out via Contact to explore branded activation, logistics coordination, and trackside exposure. 
-        </p>
+        <h2>{copy.ctaTitle}</h2>
+        <p>{copy.ctaBody}</p>
       </section>
     </main>
   );

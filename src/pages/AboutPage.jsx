@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function AboutPage() {
+export default function AboutPage({ language = 'en' }) {
   useEffect(() => {
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.nd');
@@ -19,6 +19,60 @@ export default function AboutPage() {
 
     return () => observer.disconnect();
   }, []);
+
+  const copy = language === 'ro'
+    ? {
+        heroEyebrow: 'Pilot profesionist de karting',
+        heroDesc: 'Concurez in Rotax Max Challenge — Senior. Reprezint Formula K Romania cu focus pe precizie, viteza si performanta constanta la nivel inalt.',
+        heroBtn: 'Vezi oportunitati de parteneriat',
+        driverEyebrow: 'Pilotul',
+        driverTitle: 'La Volan',
+        p1: 'Alexandru Radita este un pilot de 14 ani din Romania, care concureaza in categoria Rotax Max Challenge — Senior.',
+        p2: 'Reprezentand Formula K Romania, Alex s-a impus ca un concurent serios pe plan national, cunoscut pentru feedbackul tehnic si ritmul de cursa.',
+        p3: 'Obiectivul pentru sezonul 2026 ramane podiumul, printr-o abordare disciplinata a pregatirii fizice si tehnice.',
+        age: 'Varsta',
+        nationality: 'Nationalitate',
+        nextEyebrow: 'Urmatorul eveniment',
+        autoAdvance: 'Aceasta sectiune trece automat la urmatorul eveniment programat dupa incheierea celui curent.',
+        daysLeft: 'zile ramase',
+        dayLeft: 'zi ramasa',
+        recordEyebrow: 'Rezultate',
+        recordTitle: 'Performanta in sezon',
+        qualifying: 'Calificari',
+        grid: 'Grila',
+        final: 'Finala',
+        heat4: 'Mansa 4',
+        race: 'Cursa',
+        touch: 'Ia legatura',
+        team: 'Echipa',
+        phone: 'Telefon',
+      }
+    : {
+        heroEyebrow: 'Professional Karting Driver',
+        heroDesc: 'Competing in the Rotax Max Challenge — Senior. Representing Formula K Romania with a focus on precision, speed, and consistent top-tier performance.',
+        heroBtn: 'View Partenership Oportunities',
+        driverEyebrow: 'The Driver',
+        driverTitle: 'Behind the Wheel',
+        p1: 'Alexandru Radita is a 14-year-old racing driver from Romania, currently competing in the Rotax Max Challenge — Senior category.',
+        p2: 'Representing Formula K Romania, Alex has established himself as a serious contender on the national circuit, known for his technical feedback and race-winning pace.',
+        p3: 'His focus for the 2026 season remains on the podium, utilizing a disciplined approach to both physical training and technical preparation with the team.',
+        age: 'Age',
+        nationality: 'Nationality',
+        nextEyebrow: 'Next Event',
+        autoAdvance: 'This section automatically advances to the next scheduled event once the current event has passed.',
+        daysLeft: 'days left',
+        dayLeft: 'day left',
+        recordEyebrow: 'Track Record',
+        recordTitle: 'Season Performance',
+        qualifying: 'Qualifying',
+        grid: 'Grid',
+        final: 'Final',
+        heat4: 'Heat 4',
+        race: 'Race',
+        touch: 'Get in Touch',
+        team: 'Team',
+        phone: 'Phone',
+      };
 
   const calendarEvents = [
     { date: '21-22 FEB', name: 'ROK WINTER TROPHY', location: 'South Garda Karting', layoutImage: '/images/layout-south-garda.jpg' },
@@ -94,6 +148,11 @@ export default function AboutPage() {
           --dark3:   #141820;
           --card:    #1A202C;
           --border:  rgba(255,255,255,0.07);
+          --gray:    #8A96A8;
+          --muted:   #C4CCD8;
+          --white:   #FFFFFF;
+          --accent:  #00C2FF;
+        }
         /* DAYS UNTIL EVENT COUNTER */
         .days-until-event {
           display: flex;
@@ -219,6 +278,30 @@ export default function AboutPage() {
           max-width:420px;
         }
 
+        .cover-proposal-btn{
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          margin-top:22px;
+          padding:11px 16px;
+          border-radius:999px;
+          border:1px solid rgba(232,0,29,0.45);
+          background:rgba(232,0,29,0.14);
+          color:var(--white);
+          font-family:'Barlow Condensed',sans-serif;
+          font-size:12px;
+          letter-spacing:0.14em;
+          text-transform:uppercase;
+          text-decoration:none;
+          transition:transform .2s ease, background .2s ease, border-color .2s ease;
+          width:fit-content;
+        }
+        .cover-proposal-btn:hover{
+          transform:translateY(-2px);
+          border-color:rgba(255,107,0,.55);
+          background:rgba(255,107,0,.16);
+        }
+
         /* DRIVER STATS CARD */
         #s2{background:var(--dark2)}
         .s2-grid{
@@ -340,26 +423,24 @@ export default function AboutPage() {
           <img src="/images/alexandru-hero.JPG" alt="Alexandru Radita racing" />
         </div>
         <div className="cover-content">
-          <div className="eyebrow">Professional Karting Driver</div>
+          <div className="eyebrow">{copy.heroEyebrow}</div>
           <h1 className="display cover-name">
             Alexandru<br/><span>Radita</span>
           </h1>
-          <p className="cover-desc">
-            Competing in the Rotax Max Challenge — Senior.
-            Representing Formula K Romania with a focus on precision, speed, and consistent top-tier performance.
-          </p>
+          <p className="cover-desc">{copy.heroDesc}</p>
+          <a className="cover-proposal-btn" href="#/proposal">{copy.heroBtn}</a>
         </div>
       </section>
 
       <section className="slide" id="s2">
         <div className="s2-grid">
           <div className="about-content">
-            <div className="eyebrow">The Driver</div>
-            <h2 className="display" style={{fontSize: '48px', marginBottom: '32px'}}>Behind the Wheel</h2>
+            <div className="eyebrow">{copy.driverEyebrow}</div>
+            <h2 className="display" style={{fontSize: '48px', marginBottom: '32px'}}>{copy.driverTitle}</h2>
             <div className="about-body">
-              <p>Alexandru Radita is a 14-year-old racing driver from Romania, currently competing in the <strong>Rotax Max Challenge — Senior</strong> category.</p>
-              <p>Representing <strong>Formula K Romania</strong>, Alex has established himself as a serious contender on the national circuit, known for his technical feedback and race-winning pace.</p>
-              <p>His focus for the 2026 season remains on the podium, utilizing a disciplined approach to both physical training and technical preparation with the team.</p>
+              <p>{copy.p1}</p>
+              <p>{copy.p2}</p>
+              <p>{copy.p3}</p>
             </div>
           </div>
 
@@ -369,8 +450,8 @@ export default function AboutPage() {
               <div className="driver-name">Alexandru <span>Radita</span></div>
               <div className="driver-meta">Rotax Max Senior · #14</div>
               <div className="driver-stats">
-                <div className="ds"><div className="n">14</div><div className="l">Age</div></div>
-                <div className="ds"><div className="n">ROU</div><div className="l">Nationality</div></div>
+                <div className="ds"><div className="n">14</div><div className="l">{copy.age}</div></div>
+                <div className="ds"><div className="n">ROU</div><div className="l">{copy.nationality}</div></div>
               </div>
             </div>
           </div>
@@ -384,16 +465,16 @@ export default function AboutPage() {
             <img src={nextEvent.layoutImage ?? '/images/layout-default.jpg'} alt="Track layout" />
           </div>
           <div className="next-event-info">
-            <div className="eyebrow">Next Event</div>
+            <div className="eyebrow">{copy.nextEyebrow}</div>
             <h2 className="display" style={{ fontSize: '40px', marginBottom: '18px' }}>{nextEvent.name}</h2>
             <p className="about-body">{nextEvent.date} · {nextEvent.location}</p>
             {typeof daysUntilEvent === 'number' && daysUntilEvent >= 0 && (
               <div className="days-until-event">
                 <span className="days-number">{daysUntilEvent}</span>
-                <span className="days-label">day{daysUntilEvent === 1 ? '' : 's'} left</span>
+                <span className="days-label">{daysUntilEvent === 1 ? copy.dayLeft : copy.daysLeft}</span>
               </div>
             )}
-            <p className="about-body">This section automatically advances to the next scheduled event once the current event has passed.</p>
+            <p className="about-body">{copy.autoAdvance}</p>
           </div>
         </div>
       </section>
@@ -411,35 +492,32 @@ export default function AboutPage() {
       </section>
 
       <section className="slide" id="s4">
-        <div className="eyebrow">Track Record</div>
-        <h2 className="display" style={{fontSize: '48px', marginBottom: '48px'}}>Season Performance</h2>
+        <div className="eyebrow">{copy.recordEyebrow}</div>
+        <h2 className="display" style={{fontSize: '48px', marginBottom: '48px'}}>{copy.recordTitle}</h2>
         <div className="results-wrap">
           <div className="rc">
-            <div className="flag-line">🇷🇴 Romanian Cup</div>
-            <h3>Rotax Max Senior</h3>
-            <div className="rrow"><span className="stage">Qualifying</span><span className="pos">P1</span></div>
-            <div className="rrow"><span className="stage">Pre-Final</span><span className="pos">P2</span></div>
-            <div className="rrow"><span className="stage">Final</span><span className="pos" style={{color: '#4ade80'}}>P1</span></div>
+            <div className="flag-line">ROK WINTER CUP</div>
+            <h3>ROK Senior </h3>
+            <div className="rrow"><span className="stage">{copy.qualifying}</span><span className="pos">P32</span></div>
+            <div className="rrow"><span className="stage">{copy.grid}</span><span className="pos">P35</span></div>
+            <div className="rrow"><span className="stage">{copy.final}</span><span className="pos">DSQ</span></div>
           </div>
           <div className="rc">
-            <div className="flag-line">🇷🇴 National Championship</div>
+            <div className="flag-line">ROTAX CE 1 </div>
             <h3>Rotax Max Senior</h3>
-            <div className="rrow"><span className="stage">Round 1</span><span className="pos">P3</span></div>
-            <div className="rrow"><span className="stage">Round 2</span><span className="pos">P1</span></div>
-            <div className="rrow"><span className="stage">Round 3</span><span className="pos">P2</span></div>
-          </div>
-          <div className="rc" style={{background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <span className="display" style={{color: 'var(--gray)', fontSize: '24px'}}>RACE YOUR WAY</span>
+            <div className="rrow"><span className="stage">{copy.qualifying}</span><span className="pos">P23</span></div>
+            <div className="rrow"><span className="stage">{copy.heat4}</span><span className="pos">P11</span></div>
+            <div className="rrow"><span className="stage">{copy.race}</span><span className="pos">P67</span></div>
           </div>
         </div>
       </section>
 
       <section className="slide" id="s5">
         <div className="contact-body">
-          <h2 className="contact-head">Get in <em>Touch</em></h2>
+          <h2 className="contact-head">{copy.touch.split(' ')[0]} <em>{copy.touch.split(' ').slice(1).join(' ')}</em></h2>
           <div className="cdetails">
-            <div className="ci"><label>Team</label><strong>Formula K Romania</strong></div>
-            <div className="ci"><label>Phone</label><strong>+40 761636161</strong></div>
+            <div className="ci"><label>{copy.team}</label><strong>Formula K Romania</strong></div>
+            <div className="ci"><label>{copy.phone}</label><strong>+40 761636161</strong></div>
             <div className="ci"><label>Nationality</label><strong>Romanian 🇷🇴</strong></div>
           </div>
         </div>
