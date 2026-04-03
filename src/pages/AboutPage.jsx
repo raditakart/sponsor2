@@ -66,7 +66,7 @@ export default function AboutPage({ language = 'en' }) {
         driverTitle: 'About',
         driverTitleAccent: 'Me',
         p1: 'My name is Alexandru Radita, and I first sat in a kart in February 2024, aged 12. I had never done it before, but the moment I got on track, I knew this was what I wanted to do with my life. I started going every week, and within months I was at the top split of the rental leaderboards.',
-        p2: 'In the summer of 2024, I attended my first professional test camp - five days with experienced drivers and coaches. I am confident I was the quickest driver there. But at the time, we could not afford to race professionally. So I kept showing up, kept doing rentals and sprint races, kept getting faster.',
+        p2: 'In the summer of 2024, I attended my first professional test camp - five days with other drivers and experienced  coaches. I am confident I was the quickest driver there. But at the time, we could not afford to race professionally. So I kept showing up, kept doing rentals and sprint races, kept getting faster.',
         p3: 'In June 2025, everything changed. I was given a serious test opportunity and my potential was recognised immediately. I spent the entire summer doing five test days a week to prepare, and made my competitive debut in the Rotax Max Challenge Romania shortly after.',
         p4: 'Since then I have raced in four national rounds and two international events in Italy - the ROK Winter Trophy in Lonato and the RMC Central & Eastern European round in Jesolo. I went from never having driven a kart to racing on European circuits in just two years, and this is only the beginning.',
         cardMeta: 'Romania · Age 14',
@@ -139,16 +139,16 @@ export default function AboutPage({ language = 'en' }) {
         :root {
           --red:     #E8001D;
           --orange:  #FF6B00;
-          --teal:    #00B4A0;
-          --dark:    #07090D;
-          --dark2:   #0D1017;
-          --dark3:   #141820;
-          --card:    #1A202C;
-          --border:  rgba(255,255,255,0.07);
-          --gray:    #8A96A8;
-          --muted:   #C4CCD8;
-          --white:   #FFFFFF;
-          --accent:  #00C2FF;
+          --teal:    #009B8D;
+          --dark:    #f8f6f2;
+          --dark2:   #f2efea;
+          --dark3:   #ffffff;
+          --card:    #f7f4ef;
+          --border:  rgba(18, 34, 41, 0.1);
+          --gray:    #5a6871;
+          --muted:   #55646d;
+          --white:   #0d1c24;
+          --accent:  #009B8D;
         }
         img{display:block;max-width:100%}
 
@@ -163,7 +163,7 @@ export default function AboutPage({ language = 'en' }) {
         }
         .nd{
           width:8px;height:8px;border-radius:50%;
-          background:rgba(255,255,255,0.18);
+          background:rgba(18, 34, 41, 0.18);
           border:none;cursor:pointer;
           transition:background .25s,transform .25s;
           padding:0;
@@ -196,7 +196,7 @@ export default function AboutPage({ language = 'en' }) {
           display:flex;align-items:center;gap:12px;
           margin-bottom:18px;
         }
-        .eyebrow::before{content:'';display:block;width:32px;height:2px;background:var(--red)}
+        .eyebrow::before{content:'';display:block;width:32px;height:2px;background:rgba(18, 34, 41, 0.28)}
 
         .display{
           font-family:'Teko',sans-serif;
@@ -263,7 +263,7 @@ export default function AboutPage({ language = 'en' }) {
           border-radius:999px;
           border:1px solid rgba(232,0,29,0.45);
           background:rgba(232,0,29,0.14);
-          color:var(--white);
+          color:var(--red);
           font-family:'Barlow Condensed',sans-serif;
           font-size:12px;
           letter-spacing:0.14em;
@@ -274,12 +274,12 @@ export default function AboutPage({ language = 'en' }) {
         }
         .cover-proposal-btn:hover{
           transform:translateY(-2px);
-          border-color:rgba(255,107,0,.55);
-          background:rgba(255,107,0,.16);
+          border-color:rgba(232,0,29,0.55);
+          background:rgba(232,0,29,0.18);
         }
 
         /* DRIVER STATS CARD */
-        #s2{background:var(--dark2)}
+        #s2{background: linear-gradient(160deg, var(--dark2) 0%, var(--dark) 100%)}
         .s2-grid{
           display:grid;
           grid-template-columns:1fr 420px;
@@ -293,7 +293,11 @@ export default function AboutPage({ language = 'en' }) {
         .driver-card{
           background:var(--dark3);
           border:1px solid var(--border);
+          border-top: 3px solid rgba(232, 0, 29, 0.82);
+          border-radius: 16px;
+          overflow: hidden;
           position:sticky;top:40px;
+          box-shadow: 0 4px 8px rgba(15, 24, 29, 0.06), 0 24px 64px rgba(15, 24, 29, 0.1);
         }
         .driver-card img{width:100%; height:320px; object-fit:cover;}
         .driver-card-body{padding:24px}
@@ -361,6 +365,13 @@ export default function AboutPage({ language = 'en' }) {
           border: 1px solid var(--border);
           border-left: 3px solid var(--red);
           padding: 14px;
+          border-radius: 4px;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .about-journey-item:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 28px rgba(15, 24, 29, 0.08);
         }
 
         .about-journey-date {
@@ -398,7 +409,7 @@ export default function AboutPage({ language = 'en' }) {
         @media(max-width:1100px){.results-wrap{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:700px){.results-wrap{grid-template-columns:1fr}}
         .rc{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red); padding:24px 22px;}
-        .rrow{display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,.04); font-size:13px;}
+        .rrow{display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(18, 34, 41, 0.08); font-size:13px;}
         .pos{font-family:'Barlow Condensed',sans-serif; font-weight:600; color:var(--white);}
 
         /* CONTACT */
@@ -411,12 +422,12 @@ export default function AboutPage({ language = 'en' }) {
         .ci strong{font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:400; color:var(--white)}
 
         .footer{
-          background:var(--dark); padding:20px 88px;
+          background: #0b2220; padding:24px 88px;
           display:flex; justify-content:space-between; align-items:center;
-          border-top:1px solid var(--border);
-          font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray);
+          border-top: none;
+          font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35);
         }
-        .footer-logo{font-family:'Teko',sans-serif; font-size:24px; font-weight:700; color:var(--white);}
+        .footer-logo{font-family:'Teko',sans-serif; font-size:24px; font-weight:700; color:rgba(255,255,255,0.88);}
         .footer-logo span{color:var(--red)}
       `}</style>
 
