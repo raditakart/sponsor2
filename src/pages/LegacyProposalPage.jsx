@@ -59,7 +59,7 @@ export default function LegacyProposalPage() {
     }
 
     document.documentElement.lang = parsedPage.lang;
-    document.title = 'Alex Radita';
+    document.title = 'Alexndru Radita';
 
     let styleElement = document.head.querySelector('style[data-legacy-page="true"]');
     if (!styleElement) {

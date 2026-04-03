@@ -29,7 +29,7 @@ export default function CalendarPage({ language = 'en' }) {
   const events = [
     { date: '21-22 FEB', name: 'ROK WINTER TROPHY', location: 'South Garda Karting', layoutImage: '/images/layout-south-garda.jpg' },
     { date: '27 FEB - 1 MAR', name: 'RMC CE 1', location: 'Jesolo', layoutImage: '/images/layout-jesolo.jpg' },
-    { date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer', layoutImage: '/images/layout-prejmer.png' },
+    { date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer', layoutImage: '/images/layout-prejmer.jpg' },
     { date: '29-31 MAY', name: 'RMC RO 2', location: 'București', layoutImage: '/images/layout-bucuresti.jpg' },
     { date: '12-14 JUN', name: 'RMC RO 3', location: 'București', layoutImage: '/images/layout-bucuresti.jpg' },
     { date: '3-5 JUL', name: 'RMC RO 4', location: 'Târgu Secuiesc', layoutImage: '/images/layout-targu-secuesc.jpg' },
