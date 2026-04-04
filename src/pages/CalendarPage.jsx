@@ -1,43 +1,7 @@
-import { useEffect, useState } from 'react';
+import layoutPrejmerImage from '../../images/layout-prejmer.JPG';
 
 export default function CalendarPage({ language = 'en' }) {
-  const fallbackLayoutImage = '/images/layout-prejmer.JPG';
-  const [trackRotation, setTrackRotation] = useState(0);
-
-  useEffect(() => {
-    let frameId = null;
-
-    const updateRotation = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
-      const scrollableHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-      const progress = Math.min(scrollTop / scrollableHeight, 1);
-      setTrackRotation(progress * 540);
-    };
-
-    const handleScroll = () => {
-      if (frameId !== null) {
-        return;
-      }
-
-      frameId = window.requestAnimationFrame(() => {
-        updateRotation();
-        frameId = null;
-      });
-    };
-
-    updateRotation();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-
-    return () => {
-      if (frameId !== null) {
-        window.cancelAnimationFrame(frameId);
-      }
-
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, []);
+  const fallbackLayoutImage = layoutPrejmerImage;
 
   const copy = language === 'ro'
     ? {
@@ -67,17 +31,17 @@ export default function CalendarPage({ language = 'en' }) {
         disclaimer: '*subject to change',
       };
   const events = [
-    { date: '21-22 FEB', name: 'ROK WINTER TROPHY', location: 'South Garda Karting', layoutImage: '/images/layout-south-garda.jpg' },
-    { date: '27 FEB - 1 MAR', name: 'RMC CE 1', location: 'Jesolo', layoutImage: '/images/layout-jesolo.jpg' },
-    { date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer', layoutImage: '/images/layout-prejmer.JPG' },
-    { date: '29-31 MAY', name: 'RMC RO 2', location: 'București', layoutImage: '/images/layout-bucuresti.jpg' },
-    { date: '12-14 JUN', name: 'RMC RO 3', location: 'București', layoutImage: '/images/layout-bucuresti.jpg' },
-    { date: '3-5 JUL', name: 'RMC RO 4', location: 'Târgu Secuiesc', layoutImage: '/images/layout-targu-secuesc.jpg' },
-    { date: '28-30 AUG', name: 'RMC RO 5', location: 'Târgu Secuiesc', layoutImage: '/images/layout-targu-secuesc.jpg' },
-    { date: '4-6 SEP', name: 'TRANSYLVANIAN TROPHY', location: 'Prejmer', layoutImage: '/images/layout-prejmer.JPG' },
-    { date: '25-27 SEP', name: 'RMC RO 6', location: 'București', layoutImage: '/images/layout-bucuresti.jpg' },
-    { date: '13-17 OCT', name: 'ROK SUPERFINAL', location: 'South Garda Karting', layoutImage: '/images/layout-south-garda.jpg' },
-    { date: '7-9 NOV', name: 'MOJO TROPHY', location: 'Jesolo', layoutImage: '/images/layout-jesolo.jpg' },
+    { date: '21-22 FEB', name: 'ROK WINTER TROPHY', location: 'South Garda Karting', layoutImage: fallbackLayoutImage },
+    { date: '27 FEB - 1 MAR', name: 'RMC CE 1', location: 'Jesolo', layoutImage: fallbackLayoutImage },
+    { date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer', layoutImage: fallbackLayoutImage },
+    { date: '29-31 MAY', name: 'RMC RO 2', location: 'București', layoutImage: fallbackLayoutImage },
+    { date: '12-14 JUN', name: 'RMC RO 3', location: 'București', layoutImage: fallbackLayoutImage },
+    { date: '3-5 JUL', name: 'RMC RO 4', location: 'Târgu Secuiesc', layoutImage: fallbackLayoutImage },
+    { date: '28-30 AUG', name: 'RMC RO 5', location: 'Târgu Secuiesc', layoutImage: fallbackLayoutImage },
+    { date: '4-6 SEP', name: 'TRANSYLVANIAN TROPHY', location: 'Prejmer', layoutImage: fallbackLayoutImage },
+    { date: '25-27 SEP', name: 'RMC RO 6', location: 'București', layoutImage: fallbackLayoutImage },
+    { date: '13-17 OCT', name: 'ROK SUPERFINAL', location: 'South Garda Karting', layoutImage: fallbackLayoutImage },
+    { date: '7-9 NOV', name: 'MOJO TROPHY', location: 'Jesolo', layoutImage: fallbackLayoutImage },
   ];
 
   const monthMap = { JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11 };
@@ -154,7 +118,6 @@ export default function CalendarPage({ language = 'en' }) {
           <img
             src={nextEvent.layoutImage ?? fallbackLayoutImage}
             alt="Track layout"
-            style={{ transform: `rotate(${trackRotation}deg) scale(1.04)` }}
             onError={(event) => {
               event.currentTarget.onerror = null;
               event.currentTarget.src = fallbackLayoutImage;
