@@ -31,7 +31,7 @@ function Navbar({ language, onLanguageChange }) {
       <nav className="app-nav">
         <div className="brand-cluster">
           <NavLink className="brand" to="/">
-            <span className="brand-mark" aria-hidden="true" />
+            <img src="/images/logo.png" alt="" className="brand-mark" aria-hidden="true" />
             <span>Alexandru Radita</span>
           </NavLink>
           <div className="brand-socials" aria-label="Social profiles">

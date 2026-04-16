@@ -86,11 +86,12 @@ a {
 }
 
 .brand-mark {
-  width: 13px;
-  height: 13px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--hot), var(--hot-soft));
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 8px 24px rgba(15, 24, 29, 0.12);
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  object-fit: contain;
+  background: transparent;
+  box-shadow: none;
 }
 
 .app-nav-links {
@@ -744,6 +745,11 @@ a {
 
   .brand-cluster {
     justify-content: space-between;
+  }
+
+  .brand-mark {
+    width: 54px;
+    height: 54px;
   }
 
   .app-nav-links {
