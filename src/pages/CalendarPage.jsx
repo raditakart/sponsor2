@@ -51,12 +51,12 @@ export default function CalendarPage({ language = 'en' }) {
       location: 'South Garda Karting',
       results: language === 'ro'
         ? [
-            'Calificări: debut internațional pe circuitul South Garda Karting din Lonato.',
-            'Cursă: weekend complet de adaptare și kilometri valoroși împotriva unora dintre cei mai buni juniori din Europa.',
+            'Calificări: P32.',
+            'Cursă: DSQ.',
           ]
         : [
-            'Qualifying: international debut at South Garda Karting in Lonato.',
-            'Race: a full learning weekend with valuable race mileage against some of Europe’s best junior karters.',
+            'Qualifying: P32.',
+            'Race: DSQ.',
           ],
     },
     {
@@ -66,12 +66,12 @@ export default function CalendarPage({ language = 'en' }) {
       location: 'Jesolo',
       results: language === 'ro'
         ? [
-            'Calificări: ritm competitiv într-un câmp de peste 70 de piloți.',
-            'Cursă: Heat 4 – P11 în grupă.',
+            'Calificări: P30.',
+            'Cursă: P32.',
           ]
         : [
-            'Qualifying: competitive pace in a field of 70+ drivers.',
-            'Race: Heat 4 – P11 in group.',
+            'Qualifying: P30.',
+            'Race: P32.',
           ],
     },
     { key: 'rmc-ro-1', date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer' },
