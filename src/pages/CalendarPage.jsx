@@ -20,8 +20,8 @@ export default function CalendarPage({ language = 'en' }) {
         scheduled: 'Programat',
         viewResults: 'Vezi rezultatele',
         hideResults: 'Ascunde rezultatele',
-        resultsTitle: 'Rezultatele cursei',
-        resultsPending: 'Rezultatele detaliate vor fi adaugate in curand.',
+        resultsTitle: 'Calificări & cursă',
+        resultsPending: 'Rezultatele detaliate vor fi adăugate în curând.',
       }
     : {
         kicker: 'Calendar',
@@ -39,8 +39,8 @@ export default function CalendarPage({ language = 'en' }) {
         scheduled: 'Scheduled',
         viewResults: 'View results',
         hideResults: 'Hide results',
-        resultsTitle: 'Race results',
-        resultsPending: 'Detailed results will be added soon.',
+        resultsTitle: 'Qualifying & Race Results',
+        resultsPending: 'Detailed qualifying and race results will be added soon.',
       };
 
   const events = [
@@ -51,12 +51,12 @@ export default function CalendarPage({ language = 'en' }) {
       location: 'South Garda Karting',
       results: language === 'ro'
         ? [
-            'Primul weekend international complet al sezonului.',
-            'Eveniment folosit pentru adaptare rapida, experienta si kilometri valorosi pe circuitul din Lonato.',
+            'Calificări: debut internațional pe circuitul South Garda Karting din Lonato.',
+            'Cursă: weekend complet de adaptare și kilometri valoroși împotriva unora dintre cei mai buni juniori din Europa.',
           ]
         : [
-            'First full international event of the season.',
-            'A valuable learning weekend with important race mileage at South Garda Karting in Lonato.',
+            'Qualifying: international debut at South Garda Karting in Lonato.',
+            'Race: a full learning weekend with valuable race mileage against some of Europe’s best junior karters.',
           ],
     },
     {
@@ -66,12 +66,12 @@ export default function CalendarPage({ language = 'en' }) {
       location: 'Jesolo',
       results: language === 'ro'
         ? [
-            'Heat 4: P11 in grupa, intr-un camp cu peste 70 de piloti.',
-            'Weekend puternic care a confirmat ritmul international la inceput de sezon.',
+            'Calificări: ritm competitiv într-un câmp de peste 70 de piloți.',
+            'Cursă: Heat 4 – P11 în grupă.',
           ]
         : [
-            'Heat 4: P11 in group against a field of 70+ drivers.',
-            'A strong weekend that confirmed international pace early in the season.',
+            'Qualifying: competitive pace in a field of 70+ drivers.',
+            'Race: Heat 4 – P11 in group.',
           ],
     },
     { key: 'rmc-ro-1', date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer' },
