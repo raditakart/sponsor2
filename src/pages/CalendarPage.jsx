@@ -1,5 +1,7 @@
+import { useState } from 'react';
+
 export default function CalendarPage({ language = 'en' }) {
-  const fallbackLayoutImage = '/images/layout-track-red.svg?v=1';
+  const [openRaceKey, setOpenRaceKey] = useState(null);
 
   const copy = language === 'ro'
     ? {
@@ -7,13 +9,19 @@ export default function CalendarPage({ language = 'en' }) {
         title: 'Calendar Sezon 2026',
         subtitle: 'Urmareste toate datele, seriile si locatiile de curse din 2026.',
         nextEyebrow: 'Urmatorul eveniment',
-        autoAdvance: 'Aceasta sectiune trece automat la urmatorul eveniment programat dupa incheierea celui curent.',
+        autoAdvance: '',
         daysLeft: 'zile ramase',
         dayLeft: 'zi ramasa',
         focusKicker: 'Focus Sezon',
         focusTitle: 'De la winter trophy pana la etapele finale Superfinal.',
         focusBody: 'Sezonul include evenimente nationale si internationale, cu vizibilitate puternica in Romania si pe circuite cheie din Europa.',
         disclaimer: '*sub rezerva modificarilor',
+        finished: 'Finalizat',
+        scheduled: 'Programat',
+        viewResults: 'Vezi rezultatele',
+        hideResults: 'Ascunde rezultatele',
+        resultsTitle: 'Rezultatele cursei',
+        resultsPending: 'Rezultatele detaliate vor fi adaugate in curand.',
       }
     : {
         kicker: 'Calendar',
@@ -27,19 +35,54 @@ export default function CalendarPage({ language = 'en' }) {
         focusTitle: 'From winter trophy to the final Superfinal stages.',
         focusBody: 'This season includes both national and international events, with strong visibility in Romania and key European circuits.',
         disclaimer: '*subject to change',
+        finished: 'Finished',
+        scheduled: 'Scheduled',
+        viewResults: 'View results',
+        hideResults: 'Hide results',
+        resultsTitle: 'Race results',
+        resultsPending: 'Detailed results will be added soon.',
       };
+
   const events = [
-    { date: '21-22 FEB', name: 'ROK WINTER TROPHY', location: 'South Garda Karting', layoutImage: fallbackLayoutImage },
-    { date: '27 FEB - 1 MAR', name: 'RMC CE 1', location: 'Jesolo', layoutImage: fallbackLayoutImage },
-    { date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer', layoutImage: fallbackLayoutImage },
-    { date: '29-31 MAY', name: 'RMC RO 2', location: 'București', layoutImage: fallbackLayoutImage },
-    { date: '12-14 JUN', name: 'RMC RO 3', location: 'București', layoutImage: fallbackLayoutImage },
-    { date: '3-5 JUL', name: 'RMC RO 4', location: 'Târgu Secuiesc', layoutImage: fallbackLayoutImage },
-    { date: '28-30 AUG', name: 'RMC RO 5', location: 'Târgu Secuiesc', layoutImage: fallbackLayoutImage },
-    { date: '4-6 SEP', name: 'TRANSYLVANIAN TROPHY', location: 'Prejmer', layoutImage: fallbackLayoutImage },
-    { date: '25-27 SEP', name: 'RMC RO 6', location: 'București', layoutImage: fallbackLayoutImage },
-    { date: '13-17 OCT', name: 'ROK SUPERFINAL', location: 'South Garda Karting', layoutImage: fallbackLayoutImage },
-    { date: '7-9 NOV', name: 'MOJO TROPHY', location: 'Jesolo', layoutImage: fallbackLayoutImage },
+    {
+      key: 'rok-winter-trophy',
+      date: '21-22 FEB',
+      name: 'ROK WINTER TROPHY',
+      location: 'South Garda Karting',
+      results: language === 'ro'
+        ? [
+            'Primul weekend international complet al sezonului.',
+            'Eveniment folosit pentru adaptare rapida, experienta si kilometri valorosi pe circuitul din Lonato.',
+          ]
+        : [
+            'First full international event of the season.',
+            'A valuable learning weekend with important race mileage at South Garda Karting in Lonato.',
+          ],
+    },
+    {
+      key: 'rmc-ce-1',
+      date: '27 FEB - 1 MAR',
+      name: 'RMC CE 1',
+      location: 'Jesolo',
+      results: language === 'ro'
+        ? [
+            'Heat 4: P11 in grupa, intr-un camp cu peste 70 de piloti.',
+            'Weekend puternic care a confirmat ritmul international la inceput de sezon.',
+          ]
+        : [
+            'Heat 4: P11 in group against a field of 70+ drivers.',
+            'A strong weekend that confirmed international pace early in the season.',
+          ],
+    },
+    { key: 'rmc-ro-1', date: '8-10 MAY', name: 'RMC RO 1', location: 'Prejmer' },
+    { key: 'rmc-ro-2', date: '29-31 MAY', name: 'RMC RO 2', location: 'București' },
+    { key: 'rmc-ro-3', date: '12-14 JUN', name: 'RMC RO 3', location: 'București' },
+    { key: 'rmc-ro-4', date: '3-5 JUL', name: 'RMC RO 4', location: 'Târgu Secuiesc' },
+    { key: 'rmc-ro-5', date: '28-30 AUG', name: 'RMC RO 5', location: 'Târgu Secuiesc' },
+    { key: 'transylvanian-trophy', date: '4-6 SEP', name: 'TRANSYLVANIAN TROPHY', location: 'Prejmer' },
+    { key: 'rmc-ro-6', date: '25-27 SEP', name: 'RMC RO 6', location: 'București' },
+    { key: 'rok-superfinal', date: '13-17 OCT', name: 'ROK SUPERFINAL', location: 'South Garda Karting' },
+    { key: 'mojo-trophy', date: '7-9 NOV', name: 'MOJO TROPHY', location: 'Jesolo' },
   ];
 
   const monthMap = { JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11 };
@@ -80,11 +123,13 @@ export default function CalendarPage({ language = 'en' }) {
     return { start: fallback, end: fallback };
   };
 
+  const todayStart = new Date();
+  todayStart.setHours(0, 0, 0, 0);
+
   const getNextEvent = () => {
-    const today = new Date();
-    const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const next = events.find((event) => {
       const { end } = parseEventRange(event.date);
+      end.setHours(0, 0, 0, 0);
       return end >= todayStart;
     });
     return next || events[events.length - 1];
@@ -94,10 +139,8 @@ export default function CalendarPage({ language = 'en' }) {
   let daysUntilEvent = null;
   if (nextEvent) {
     const { start } = parseEventRange(nextEvent.date);
-    const today = new Date();
     start.setHours(0, 0, 0, 0);
-    today.setHours(0, 0, 0, 0);
-    const diffMs = start - today;
+    const diffMs = start - todayStart;
     daysUntilEvent = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
   }
 
@@ -122,23 +165,146 @@ export default function CalendarPage({ language = 'en' }) {
               <span className="days-label">{daysUntilEvent === 1 ? copy.dayLeft : copy.daysLeft}</span>
             </div>
           )}
-          <p>{copy.autoAdvance}</p>
+          {copy.autoAdvance ? <p>{copy.autoAdvance}</p> : null}
         </div>
       </section>
 
       <section className="calendar-event-list">
         <ol className="calendar-event-list-items">
-          {events.map((event) => (
-            <li className="calendar-event-row" key={`${event.date}-${event.name}`}>
-              <div className="event-row-left">
-                <span className="event-date">{event.date}</span>
-                <span className="event-location">{event.location}</span>
-              </div>
-              <div className="event-row-right">
-                <span className="event-name">{event.name}</span>
-              </div>
-            </li>
-          ))}
+          {events.map((event) => {
+            const { end } = parseEventRange(event.date);
+            end.setHours(0, 0, 0, 0);
+            const isFinished = end < todayStart;
+            const isOpen = openRaceKey === event.key;
+
+            return (
+              <li className="calendar-event-card" key={event.key}>
+                {isFinished ? (
+                  <button
+                    type="button"
+                    className="calendar-event-row calendar-event-toggle"
+                    onClick={() => setOpenRaceKey(isOpen ? null : event.key)}
+                    aria-expanded={isOpen}
+                  >
+                    <div className="event-row-left">
+                      <span className="event-date">{event.date}</span>
+                      <span className="event-location">{event.location}</span>
+                    </div>
+                    <div className="event-row-right">
+                      <span className="event-status finished">{copy.finished}</span>
+                      <span className="event-name">{event.name}</span>
+                      <span className="event-toggle-text">{isOpen ? `${copy.hideResults} −` : `${copy.viewResults} +`}</span>
+                    </div>
+                  </button>
+                ) : (
+                  <div className="calendar-event-row">
+                    <div className="event-row-left">
+                      <span className="event-date">{event.date}</span>
+                      <span className="event-location">{event.location}</span>
+                    </div>
+                    <div className="event-row-right">
+                      <span className="event-status scheduled">{copy.scheduled}</span>
+                      <span className="event-name">{event.name}</span>
+                    </div>
+                  </div>
+                )}
+
+                {isFinished && isOpen && (
+                  <div className="calendar-event-results">
+                    <p className="calendar-event-results-title">{copy.resultsTitle}</p>
+                    <ul>
+                      {(event.results?.length ? event.results : [copy.resultsPending]).map((result, index) => (
+                        <li key={`${event.key}-result-${index}`}>{result}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            );
+          } start } = parseEventRange(nextEvent.date);
+    start.setHours(0, 0, 0, 0);
+    const diffMs = start - todayStart;
+    daysUntilEvent = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+  }
+
+  return (
+    <main className="page page-accent page-calendar">
+      <section className="hero-panel calendar-hero">
+        <div>
+          <p className="hero-kicker">{copy.kicker}</p>
+          <h1>{copy.title}</h1>
+        </div>
+        <p className="hero-copy">{copy.subtitle}</p>
+      </section>
+
+      <section className="hero-panel calendar-next-event-panel">
+        <div className="calendar-next-event-info">
+          <p className="hero-kicker">{copy.nextEyebrow}</p>
+          <h2>{nextEvent.name}</h2>
+          <p>{nextEvent.date} · {nextEvent.location}</p>
+          {typeof daysUntilEvent === 'number' && daysUntilEvent >= 0 && (
+            <div className="days-until-event">
+              <span className="days-number">{daysUntilEvent}</span>
+              <span className="days-label">{daysUntilEvent === 1 ? copy.dayLeft : copy.daysLeft}</span>
+            </div>
+          )}
+          {copy.autoAdvance ? <p>{copy.autoAdvance}</p> : null}
+        </div>
+      </section>
+
+      <section className="calendar-event-list">
+        <ol className="calendar-event-list-items">
+          {events.map((event) => {
+            const { end } = parseEventRange(event.date);
+            end.setHours(0, 0, 0, 0);
+            const isFinished = end < todayStart;
+            const isOpen = openRaceKey === event.key;
+
+            return (
+              <li className="calendar-event-card" key={event.key}>
+                {isFinished ? (
+                  <button
+                    type="button"
+                    className="calendar-event-row calendar-event-toggle"
+                    onClick={() => setOpenRaceKey(isOpen ? null : event.key)}
+                    aria-expanded={isOpen}
+                  >
+                    <div className="event-row-left">
+                      <span className="event-date">{event.date}</span>
+                      <span className="event-location">{event.location}</span>
+                    </div>
+                    <div className="event-row-right">
+                      <span className="event-status finished">{copy.finished}</span>
+                      <span className="event-name">{event.name}</span>
+                      <span className="event-toggle-text">{isOpen ? `${copy.hideResults} −` : `${copy.viewResults} +`}</span>
+                    </div>
+                  </button>
+                ) : (
+                  <div className="calendar-event-row">
+                    <div className="event-row-left">
+                      <span className="event-date">{event.date}</span>
+                      <span className="event-location">{event.location}</span>
+                    </div>
+                    <div className="event-row-right">
+                      <span className="event-status scheduled">{copy.scheduled}</span>
+                      <span className="event-name">{event.name}</span>
+                    </div>
+                  </div>
+                )}
+
+                {isFinished && isOpen && (
+                  <div className="calendar-event-results">
+                    <p className="calendar-event-results-title">{copy.resultsTitle}</p>
+                    <ul>
+                      {(event.results?.length ? event.results : [copy.resultsPending]).map((result, index) => (
+                        <li key={`${event.key}-result-${index}`}>{result}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            );
+          })}
         </ol>
         <p className="calendar-disclaimer">{copy.disclaimer}</p>
       </section>
