@@ -30,6 +30,7 @@ body {
     linear-gradient(180deg, #f6f4ef 0%, #fbfaf7 100%);
   color: var(--text);
   font-family: 'Barlow', sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -63,26 +64,40 @@ a {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 2px 4px rgba(15, 24, 29, 0.03), 0 16px 48px rgba(15, 24, 29, 0.09);
 }
 
+.app-nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   font-family: 'Teko', sans-serif;
-  font-size: 30px;
+  font-size: clamp(24px, 2vw, 30px);
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  min-width: 0;
+}
+
+.brand span {
+  line-height: 0.92;
 }
 
 .brand-cluster {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .brand-socials {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 }
 
 .brand-mark {
@@ -94,10 +109,27 @@ a {
   box-shadow: none;
 }
 
+.nav-menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(18, 34, 41, 0.14);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 .app-nav-links {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .lang-switch {
@@ -122,6 +154,9 @@ a {
 }
 
 .app-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 14px;
   border: 1px solid transparent;
   border-radius: 999px;
@@ -849,13 +884,25 @@ a {
 }
 
 @media (max-width: 860px) {
+  .app-nav-wrap {
+    padding: 10px 12px;
+  }
+
   .app-nav {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .app-nav-top {
+    width: 100%;
   }
 
   .brand-cluster {
     justify-content: space-between;
+    flex: 1;
   }
 
   .brand-mark {
@@ -863,16 +910,51 @@ a {
     height: 54px;
   }
 
+  .nav-menu-button {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
   .app-nav-links {
-    flex-wrap: wrap;
+    display: none;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding-top: 4px;
+  }
+
+  .app-nav.menu-open .app-nav-links {
+    display: grid;
+  }
+
+  .app-nav-link,
+  .lang-switch,
+  .lang-switch select {
+    width: 100%;
   }
 
   .lang-switch {
     margin-left: 0;
+    grid-column: 1 / -1;
   }
 
   .hero-panel {
-    padding: 32px 24px;
+    padding: 30px 22px;
+    border-radius: 22px;
+  }
+
+  .hero-panel h1 {
+    max-width: none;
+    font-size: clamp(44px, 12vw, 68px);
+  }
+
+  .hero-copy {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .page {
+    padding: 18px 12px 48px;
   }
 
   .grid-panel,
@@ -882,20 +964,35 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .calendar-next-event-image {
-    min-height: 200px;
+  .cta-panel {
+    padding: 24px 20px;
   }
 
   .contact-actions {
     flex-direction: column;
   }
 
-  .news-grid {
+  .contact-button {
+    width: 100%;
+  }
+
+  .news-grid,
+  .partner-grid {
     grid-template-columns: 1fr;
   }
 
-  .partner-grid {
-    grid-template-columns: 1fr;
+  .calendar-event-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px;
+  }
+
+  .event-row-right {
+    justify-content: flex-start;
+  }
+
+  .days-until-event {
+    flex-wrap: wrap;
   }
 
   .proposal-inline-highlight {
@@ -904,5 +1001,57 @@ a {
     font-size: 12px;
     letter-spacing: 0.05em;
   }
+}
 
+@media (max-width: 640px) {
+  .brand {
+    font-size: 21px;
+  }
+
+  .brand-mark {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-socials {
+    gap: 6px;
+  }
+
+  .social-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .app-nav-links {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel {
+    padding: 24px 16px;
+  }
+
+  .hero-kicker {
+    letter-spacing: 0.24em;
+  }
+
+  .cta-panel h2 {
+    font-size: clamp(30px, 10vw, 44px);
+  }
+
+  .calendar-next-event-panel {
+    padding: 24px 16px;
+  }
+
+  .calendar-event-results {
+    margin: -6px 4px 0;
+    padding: 12px 14px 14px;
+  }
+
+  .event-name {
+    font-size: 16px;
+  }
+
+  .event-toggle-text {
+    font-size: 10px;
+  }
 }
