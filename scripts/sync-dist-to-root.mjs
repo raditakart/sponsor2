@@ -10,6 +10,7 @@ const copyTargets = [
   ['index.html', 'index.html'],
   ['legacy-page.html', 'legacy-page.html'],
   ['CNAME', 'CNAME'],
+  ['favicon.png', 'favicon.png'],
   ['assets', 'assets'],
   ['images', 'images'],
 ];

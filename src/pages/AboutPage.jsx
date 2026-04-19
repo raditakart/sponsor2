@@ -139,17 +139,18 @@ export default function AboutPage({ language = 'en' }) {
         :root {
           --red:     #E8001D;
           --orange:  #FF6B00;
-          --teal:    #00B4A0;
-          --dark:    #07090D;
-          --dark2:   #0D1017;
-          --dark3:   #141820;
-          --card:    #1A202C;
-          --border:  rgba(255,255,255,0.07);
-          --gray:    #8A96A8;
-          --muted:   #C4CCD8;
-          --white:   #FFFFFF;
-          --accent:  #00C2FF;
+          --teal:    #009B8D;
+          --dark:    #FFFFFF;
+          --dark2:   #FBFAF7;
+          --dark3:   #F4F1EB;
+          --card:    #FFFFFF;
+          --border:  rgba(18,34,41,0.10);
+          --gray:    #6B7785;
+          --muted:   #55646D;
+          --white:   #0D1C24;
+          --accent:  #009B8D;
         }
+        .about-page{background:linear-gradient(180deg,#fff 0%,#fbfaf7 100%); color:#0D1C24;}
         img{display:block;max-width:100%}
 
         /* ════════════════════════════════════════
@@ -163,7 +164,7 @@ export default function AboutPage({ language = 'en' }) {
         }
         .nd{
           width:8px;height:8px;border-radius:50%;
-          background:rgba(255,255,255,0.18);
+          background:rgba(18,34,41,0.18);
           border:none;cursor:pointer;
           transition:background .25s,transform .25s;
           padding:0;
@@ -236,7 +237,7 @@ export default function AboutPage({ language = 'en' }) {
           flex-direction:column;
           justify-content:center;
           padding:72px 64px 72px 56px;
-          background:var(--dark);
+          background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,245,241,0.96));
         }
         @media(max-width:900px){
           .cover-img{display:none}
@@ -262,8 +263,8 @@ export default function AboutPage({ language = 'en' }) {
           padding:11px 16px;
           border-radius:999px;
           border:1px solid rgba(232,0,29,0.45);
-          background:rgba(232,0,29,0.14);
-          color:var(--white);
+          background:rgba(232,0,29,0.10);
+          color:#0D1C24;
           font-family:'Barlow Condensed',sans-serif;
           font-size:12px;
           letter-spacing:0.14em;
@@ -291,8 +292,9 @@ export default function AboutPage({ language = 'en' }) {
         .about-body p+p{margin-top:22px}
 
         .driver-card{
-          background:var(--dark3);
+          background:linear-gradient(180deg, rgba(255,255,255,0.99), rgba(247,245,241,0.97));
           border:1px solid var(--border);
+          box-shadow:0 18px 50px rgba(15,24,29,0.08);
           position:sticky;top:40px;
         }
         .driver-card img{width:100%; height:320px; object-fit:cover;}
@@ -398,7 +400,7 @@ export default function AboutPage({ language = 'en' }) {
         @media(max-width:1100px){.results-wrap{grid-template-columns:repeat(2,1fr)}}
         @media(max-width:700px){.results-wrap{grid-template-columns:1fr}}
         .rc{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red); padding:24px 22px;}
-        .rrow{display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,.04); font-size:13px;}
+        .rrow{display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(18,34,41,.08); font-size:13px;}
         .pos{font-family:'Barlow Condensed',sans-serif; font-weight:600; color:var(--white);}
 
         /* CONTACT */
@@ -411,7 +413,7 @@ export default function AboutPage({ language = 'en' }) {
         .ci strong{font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:400; color:var(--white)}
 
         .footer{
-          background:var(--dark); padding:20px 88px;
+          background:var(--dark3); padding:20px 88px;
           display:flex; justify-content:space-between; align-items:center;
           border-top:1px solid var(--border);
           font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray);
@@ -424,7 +426,6 @@ export default function AboutPage({ language = 'en' }) {
         <button className="nd on" onClick={() => goToSection('s1')}></button>
         <button className="nd" onClick={() => goToSection('s2')}></button>
         <button className="nd" onClick={() => goToSection('s3')}></button>
-        <button className="nd" onClick={() => goToSection('s5')}></button>
       </nav>
 
       <section className="slide" id="s1">
@@ -562,17 +563,6 @@ export default function AboutPage({ language = 'en' }) {
         </div>
         <div className="gallery-cell">
           <img src="/images/gallery-team3.JPG" alt="Team work" />
-        </div>
-      </section>
-
-      <section className="slide" id="s5">
-        <div className="contact-body">
-          <h2 className="contact-head">{copy.touch.split(' ')[0]} <em>{copy.touch.split(' ').slice(1).join(' ')}</em></h2>
-          <div className="cdetails">
-            <div className="ci"><label>Profile</label><strong>Racing Driver</strong></div>
-            <div className="ci"><label>{copy.phone}</label><strong>+40 761636161</strong></div>
-            <div className="ci"><label>Nationality</label><strong>Romanian 🇷🇴</strong></div>
-          </div>
         </div>
       </section>
 

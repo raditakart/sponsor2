@@ -524,23 +524,30 @@ a {
 
 .calendar-next-event-panel {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 16px;
   align-items: center;
   padding: 34px;
 }
 
 .calendar-next-event-image {
-  overflow: hidden;
+  overflow: visible;
   border-radius: 16px;
   min-height: 250px;
-  background: rgba(17, 31, 38, 0.04);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
 }
 
 .calendar-next-event-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  display: block;
+  background: transparent;
 }
 
 .calendar-next-event-info {

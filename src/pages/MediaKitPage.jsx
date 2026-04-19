@@ -6,11 +6,11 @@ export default function ContactPage({ language = 'en' }) {
         kicker: 'Contact',
         title: 'Hai sa discutam despre un parteneriat.',
         subtitle: 'Daca vrei sa discutam optiuni de sponsorizare, prezenta la cursa, vizibilitate de brand sau un pachet personalizat, aici este punctul de plecare.',
-        call: 'Suna +40 761 636 161',
+        call: 'office@alexradita.com',
         back: 'Inapoi la propunere',
         c1s: 'Contact direct',
         c1h: 'Alexandru Radita',
-        c1p1: 'Telefon: +40 761 636 161',
+        c1p1: 'Email: office@alexradita.com',
         c1p2: 'Ideal pentru primul contact, discutii de sponsorizare si follow-up pe propunere.',
         c2s: 'Profil',
         c2h: 'Pilot de karting',
@@ -27,11 +27,11 @@ export default function ContactPage({ language = 'en' }) {
         kicker: 'Contact',
         title: "Let's talk about a sponsorship fit.",
         subtitle: 'If you want to discuss sponsorship options, race-weekend presence, partner visibility, or a custom package, this page gives you a dedicated place to start the conversation.',
-        call: 'Call +40 761 636 161',
+        call: 'office@alexradita.com',
         back: 'Back to proposal',
         c1s: 'Direct contact',
         c1h: 'Alexandru Radita',
-        c1p1: 'Phone: +40 761 636 161',
+        c1p1: 'Email: office@alexradita.com',
         c1p2: 'Best for first contact, sponsor discussions, and proposal follow-up.',
         c2s: 'Profile',
         c2h: 'Karting Driver',
@@ -58,7 +58,7 @@ export default function ContactPage({ language = 'en' }) {
         </div>
         <p className="hero-copy">{copy.subtitle}</p>
         <div className="contact-actions">
-          <a className="contact-button contact-button-primary" href="tel:+40761636161">
+          <a className="contact-button contact-button-primary" href="mailto:office@alexradita.com">
             {copy.call}
           </a>
           <a className="contact-button" href="#/">

@@ -20,7 +20,7 @@ const partners = [
     name: 'AIMotor',
     website: 'https://www.aimotor.eu',
     description: 'AI-powered motorsport engineering platform that transforms telemetry and video data into actionable coaching insights for karting and sim racing performance.',
-    image: '/images/aimotor.png',
+    image: '/images/aimotor.svg?v=2',
     imageClass: 'aimotor-logo',
     fallback: 'https://via.placeholder.com/420x260.png?text=AIMotor',
   },

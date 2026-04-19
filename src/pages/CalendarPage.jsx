@@ -1,7 +1,5 @@
-import layoutPrejmerImage from '../../images/layout-prejmer.JPG';
-
 export default function CalendarPage({ language = 'en' }) {
-  const fallbackLayoutImage = layoutPrejmerImage;
+  const fallbackLayoutImage = '/images/layout-track-red.svg?v=1';
 
   const copy = language === 'ro'
     ? {
@@ -22,7 +20,7 @@ export default function CalendarPage({ language = 'en' }) {
         title: '2026 Racing Season Calendar',
         subtitle: 'Track all race dates, series, and venues for 2026.',
         nextEyebrow: 'Next Event',
-        autoAdvance: 'This section automatically advances to the next scheduled event once the current event has passed.',
+        autoAdvance: '',
         daysLeft: 'days left',
         dayLeft: 'day left',
         focusKicker: 'Season Focus',
@@ -114,16 +112,6 @@ export default function CalendarPage({ language = 'en' }) {
       </section>
 
       <section className="hero-panel calendar-next-event-panel">
-        <div className="calendar-next-event-image">
-          <img
-            src={nextEvent.layoutImage ?? fallbackLayoutImage}
-            alt="Track layout"
-            onError={(event) => {
-              event.currentTarget.onerror = null;
-              event.currentTarget.src = fallbackLayoutImage;
-            }}
-          />
-        </div>
         <div className="calendar-next-event-info">
           <p className="hero-kicker">{copy.nextEyebrow}</p>
           <h2>{nextEvent.name}</h2>
