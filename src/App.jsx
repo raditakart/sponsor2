@@ -3,7 +3,6 @@ import { HashRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import CalendarPage from './pages/CalendarPage';
 import PartnersPage from './pages/PartnersPage';
-import MediaKitPage from './pages/MediaKitPage';
 import LegacyProposalPage from './pages/LegacyProposalPage';
 
 const navCopy = {
@@ -113,7 +112,7 @@ export default function App() {
             <Route path="/" element={<AboutPage language={language} />} />
             <Route path="/calendar" element={<CalendarPage language={language} />} />
             <Route path="/partners" element={<PartnersPage language={language} />} />
-            <Route path="/contact" element={<MediaKitPage language={language} />} />
+            <Route path="/contact" element={<AboutPage language={language} focusContact />} />
             <Route path="/proposal" element={<LegacyProposalPage language={language} />} />
 
             <Route path="/media-kit" element={<Navigate to="/contact" replace />} />

@@ -2,20 +2,15 @@ import { useState } from 'react';
 
 export default function CalendarPage({ language = 'en' }) {
   const [openRaceKey, setOpenRaceKey] = useState(null);
+  const [showAllEvents, setShowAllEvents] = useState(false);
 
   const copy = language === 'ro'
     ? {
         kicker: 'Calendar',
         title: 'Calendar Sezon 2026',
-        subtitle: 'Urmareste toate datele, seriile si locatiile de curse din 2026.',
-        nextEyebrow: 'Urmatorul eveniment',
-        autoAdvance: '',
-        daysLeft: 'zile ramase',
-        dayLeft: 'zi ramasa',
-        focusKicker: 'Focus Sezon',
-        focusTitle: 'De la winter trophy pana la etapele finale Superfinal.',
-        focusBody: 'Sezonul include evenimente nationale si internationale, cu vizibilitate puternica in Romania si pe circuite cheie din Europa.',
         disclaimer: '*sub rezerva modificarilor',
+      viewAll: 'Vezi tot',
+      showLess: 'Arata mai putin',
         finished: 'Finalizat',
         scheduled: 'Programat',
         viewResults: 'Vezi rezultatele',
@@ -26,15 +21,9 @@ export default function CalendarPage({ language = 'en' }) {
     : {
         kicker: 'Calendar',
         title: '2026 Racing Season Calendar',
-        subtitle: 'Track all race dates, series, and venues for 2026.',
-        nextEyebrow: 'Next Event',
-        autoAdvance: '',
-        daysLeft: 'days left',
-        dayLeft: 'day left',
-        focusKicker: 'Season Focus',
-        focusTitle: 'From winter trophy to the final Superfinal stages.',
-        focusBody: 'This season includes both national and international events, with strong visibility in Romania and key European circuits.',
         disclaimer: '*subject to change',
+      viewAll: 'View all',
+      showLess: 'Show less',
         finished: 'Finished',
         scheduled: 'Scheduled',
         viewResults: 'View results',
@@ -126,51 +115,22 @@ export default function CalendarPage({ language = 'en' }) {
   const todayStart = new Date();
   todayStart.setHours(0, 0, 0, 0);
 
-  const getNextEvent = () => {
-    const next = events.find((event) => {
-      const { end } = parseEventRange(event.date);
-      end.setHours(0, 0, 0, 0);
-      return end >= todayStart;
-    });
-    return next || events[events.length - 1];
-  };
-
-  const nextEvent = getNextEvent();
-  let daysUntilEvent = null;
-  if (nextEvent) {
-    const { start } = parseEventRange(nextEvent.date);
-    start.setHours(0, 0, 0, 0);
-    const diffMs = start - todayStart;
-    daysUntilEvent = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-  }
-
   return (
     <main className="page page-accent page-calendar">
       <section className="hero-panel calendar-hero">
-        <div>
-          <p className="hero-kicker">{copy.kicker}</p>
-          <h1>{copy.title}</h1>
-        </div>
-        <p className="hero-copy">{copy.subtitle}</p>
-      </section>
-
-      <section className="hero-panel calendar-next-event-panel">
-        <div className="calendar-next-event-info">
-          <p className="hero-kicker">{copy.nextEyebrow}</p>
-          <h2>{nextEvent.name}</h2>
-          <p>{nextEvent.date} · {nextEvent.location}</p>
-          {typeof daysUntilEvent === 'number' && daysUntilEvent >= 0 && (
-            <div className="days-until-event">
-              <span className="days-number">{daysUntilEvent}</span>
-              <span className="days-label">{daysUntilEvent === 1 ? copy.dayLeft : copy.daysLeft}</span>
-            </div>
-          )}
-          {copy.autoAdvance ? <p>{copy.autoAdvance}</p> : null}
+        <div className="calendar-hero-main">
+          <div>
+            <p className="hero-kicker">{copy.kicker}</p>
+            <h1>{copy.title}</h1>
+          </div>
+          <div className="calendar-hero-media">
+            <img src="/images/calendar.jpeg" alt="Racing calendar" loading="lazy" />
+          </div>
         </div>
       </section>
 
       <section className="calendar-event-list">
-        <ol className="calendar-event-list-items">
+        <ol className={`calendar-event-list-items${showAllEvents ? ' is-expanded' : ''}`}>
           {events.map((event) => {
             const { end } = parseEventRange(event.date);
             end.setHours(0, 0, 0, 0);
@@ -223,15 +183,9 @@ export default function CalendarPage({ language = 'en' }) {
             );
           })}
         </ol>
-        <p className="calendar-disclaimer">{copy.disclaimer}</p>
-      </section>
-
-      <section className="cta-panel calendar-summary">
-        <div>
-          <p className="hero-kicker">{copy.focusKicker}</p>
-          <h2>{copy.focusTitle}</h2>
-        </div>
-        <p>{copy.focusBody}</p>
+        <button className="calendar-view-all" type="button" onClick={() => setShowAllEvents((value) => !value)}>
+          {showAllEvents ? copy.showLess : copy.viewAll}
+        </button>
         <p className="calendar-disclaimer">{copy.disclaimer}</p>
       </section>
     </main>

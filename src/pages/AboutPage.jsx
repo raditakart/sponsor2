@@ -1,6 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function AboutPage({ language = 'en' }) {
+export default function AboutPage({ language = 'en', focusContact = false }) {
+  const [showAllAbout, setShowAllAbout] = useState(false);
+  const [showAllJourney, setShowAllJourney] = useState(false);
+
   useEffect(() => {
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.nd');
@@ -19,6 +22,21 @@ export default function AboutPage({ language = 'en' }) {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!focusContact) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      const contactSection = document.getElementById('contact-inline');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 120);
+
+    return () => window.clearTimeout(timer);
+  }, [focusContact]);
 
   const copy = language === 'ro'
     ? {
@@ -57,9 +75,16 @@ export default function AboutPage({ language = 'en' }) {
         touch: 'Ia legatura',
         team: 'Echipa',
         phone: 'Telefon',
+        contactTitle: 'Hai sa discutam despre un parteneriat.',
+        contactSubtitle: 'Daca vrei sa discutam optiuni de sponsorizare, prezenta la cursa, vizibilitate de brand sau un pachet personalizat, aici este punctul de plecare.',
+        contactCall: 'Email: office@aleradita.com',
+        aboutViewAll: 'Vezi tot',
+        aboutShowLess: 'Arata mai putin',
+        journeyViewAll: 'Vezi tot',
+        journeyShowLess: 'Arata mai putin',
       }
     : {
-        heroEyebrow: 'Professional Karting Driver',
+      heroEyebrow: 'Karting Driver',
         heroDesc: 'Racing driver from Romania',
         heroBtn: 'Learn more',
         driverEyebrow: '01 · My Story',
@@ -94,6 +119,13 @@ export default function AboutPage({ language = 'en' }) {
         touch: 'Get in Touch',
         team: 'Team',
         phone: 'Phone',
+        contactTitle: "Let's connect",
+        contactSubtitle: 'Thank you for wanting to reach out.',
+        contactCall: 'Email: office@aleradita.com',
+        aboutViewAll: 'View all',
+        aboutShowLess: 'Show less',
+        journeyViewAll: 'View all',
+        journeyShowLess: 'Show less',
       };
 
   const articles = [
@@ -215,15 +247,25 @@ export default function AboutPage({ language = 'en' }) {
           min-height:100vh;
           display:grid;
           grid-template-columns:1fr 1fr;
+          grid-template-areas:
+            'image top'
+            'image bottom';
+          grid-template-rows:minmax(0, 1fr) auto;
         }
         @media(max-width:900px){
           #s1{
             grid-template-columns:1fr;
+            grid-template-areas:
+              'top'
+              'image'
+              'bottom';
+            grid-template-rows:auto auto auto;
             min-height:auto;
           }
         }
 
         .cover-img{
+          grid-area:image;
           position:relative;
           overflow:hidden;
           min-height:420px;
@@ -241,10 +283,21 @@ export default function AboutPage({ language = 'en' }) {
         .cover-content{
           display:flex;
           flex-direction:column;
-          justify-content:center;
-          padding:72px 64px 72px 56px;
           background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,245,241,0.96));
         }
+
+        .cover-content-top{
+          grid-area:top;
+          justify-content:flex-end;
+          padding:72px 64px 18px 56px;
+        }
+
+        .cover-content-bottom{
+          grid-area:bottom;
+          justify-content:flex-start;
+          padding:8px 64px 72px 56px;
+        }
+
         @media(max-width:900px){
           .cover-img{
             display:block;
@@ -253,14 +306,15 @@ export default function AboutPage({ language = 'en' }) {
           .cover-img::after{
             background:linear-gradient(to top, rgba(255,255,255,0.18) 0%, transparent 45%);
           }
-          .cover-content{padding:34px 22px 38px}
+          .cover-content-top{padding:34px 22px 18px}
+          .cover-content-bottom{padding:22px 22px 38px}
         }
 
         .cover-name{font-size:clamp(60px,8vw,100px)}
         .cover-name span{color:var(--red)}
 
         .cover-desc{
-          margin-top:28px;
+          margin-top:0;
           font-size:17px;
           color:var(--muted);
           line-height:1.7;
@@ -303,6 +357,28 @@ export default function AboutPage({ language = 'en' }) {
         .about-body{font-size:17px;color:var(--muted);line-height:1.8}
         .about-body p+p{margin-top:22px}
 
+        .about-toggle{
+          display:none;
+          margin-top:18px;
+          align-items:center;
+          justify-content:center;
+          min-height:44px;
+          padding:0 18px;
+          border-radius:999px;
+          border:1px solid rgba(232,0,29,0.38);
+          background:rgba(232,0,29,0.08);
+          color:var(--white);
+          font-family:'Barlow Condensed',sans-serif;
+          font-size:12px;
+          letter-spacing:.14em;
+          text-transform:uppercase;
+        }
+
+        @media(max-width:900px){
+          .about-body:not(.is-expanded) p:nth-child(n+3){display:none}
+          .about-toggle{display:inline-flex}
+        }
+
         .driver-card{
           background:linear-gradient(180deg, rgba(255,255,255,0.99), rgba(247,245,241,0.97));
           border:1px solid var(--border);
@@ -314,6 +390,10 @@ export default function AboutPage({ language = 'en' }) {
         .driver-name{font-family:'Teko',sans-serif; font-size:32px; font-weight:700; text-transform:uppercase;}
         .driver-name span{color:var(--red)}
         .driver-meta{font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--gray); margin-bottom:20px;}
+
+        @media(max-width:900px){
+          .driver-card{display:none}
+        }
 
         .driver-stats{
           display:grid;grid-template-columns:1fr 1fr;
@@ -370,6 +450,29 @@ export default function AboutPage({ language = 'en' }) {
           gap: 12px;
         }
 
+        .about-journey-toggle{
+          display:none;
+          margin-top:18px;
+          align-items:center;
+          justify-content:center;
+          min-height:44px;
+          padding:0 18px;
+          border-radius:999px;
+          border:1px solid rgba(232,0,29,0.38);
+          background:rgba(232,0,29,0.08);
+          color:var(--white);
+          font-family:'Barlow Condensed',sans-serif;
+          font-size:12px;
+          letter-spacing:.14em;
+          text-transform:uppercase;
+        }
+
+        @media(max-width:900px){
+          .about-journey-grid:not(.is-expanded) .about-journey-col:nth-child(2){display:none}
+          .about-journey-grid:not(.is-expanded) .about-journey-col:first-child .about-journey-item:nth-child(n+4){display:none}
+          .about-journey-toggle{display:inline-flex}
+        }
+
         .about-journey-item {
           background: var(--card);
           border: 1px solid var(--border);
@@ -405,6 +508,12 @@ export default function AboutPage({ language = 'en' }) {
         .gallery-cell{overflow:hidden; position:relative}
         .gallery-cell img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
         .gallery-cell:hover img{transform:scale(1.05)}
+
+        .about-contact-wrap{
+          background:var(--dark2);
+          padding:28px 88px 38px;
+        }
+        @media(max-width:900px){.about-contact-wrap{padding:20px 18px 28px}}
 
         /* RESULTS */
         #s4{background:var(--dark)}
@@ -444,11 +553,13 @@ export default function AboutPage({ language = 'en' }) {
         <div className="cover-img">
           <img src="/images/alexandru-hero.JPG" alt="Alexandru Radita racing" />
         </div>
-        <div className="cover-content">
+        <div className="cover-content cover-content-top">
           <div className="eyebrow">{copy.heroEyebrow}</div>
           <h1 className="display cover-name">
             Alexandru<br/><span>Radita</span>
           </h1>
+        </div>
+        <div className="cover-content cover-content-bottom">
           <p className="cover-desc">{copy.heroDesc}</p>
           <button className="cover-proposal-btn" type="button" onClick={() => goToSection('s2')}>
             {copy.heroBtn}
@@ -463,12 +574,15 @@ export default function AboutPage({ language = 'en' }) {
             <h2 className="display" style={{fontSize: 'clamp(44px, 6vw, 80px)', marginBottom: '48px'}}>
               {copy.driverTitle}<br />{copy.driverTitleAccent}
             </h2>
-            <div className="about-body">
+            <div className={`about-body${showAllAbout ? ' is-expanded' : ''}`}>
               <p>{copy.p1}</p>
               <p>{copy.p2}</p>
               <p>{copy.p3}</p>
               <p>{copy.p4}</p>
             </div>
+            <button className="about-toggle" type="button" onClick={() => setShowAllAbout((value) => !value)}>
+              {showAllAbout ? copy.aboutShowLess : copy.aboutViewAll}
+            </button>
           </div>
 
           <div className="driver-card">
@@ -490,7 +604,7 @@ export default function AboutPage({ language = 'en' }) {
           <section className="about-journey-wrap">
             <div className="eyebrow">02 · Career</div>
             <h3 className="display">My Journey</h3>
-            <div className="about-journey-grid">
+            <div className={`about-journey-grid${showAllJourney ? ' is-expanded' : ''}`}>
               <div className="about-journey-col">
                 <article className="about-journey-item">
                   <div className="about-journey-date">February 2024</div>
@@ -537,6 +651,9 @@ export default function AboutPage({ language = 'en' }) {
                 </article>
               </div>
             </div>
+            <button className="about-journey-toggle" type="button" onClick={() => setShowAllJourney((value) => !value)}>
+              {showAllJourney ? copy.journeyShowLess : copy.journeyViewAll}
+            </button>
           </section>
 
           <div>
@@ -575,6 +692,23 @@ export default function AboutPage({ language = 'en' }) {
         </div>
         <div className="gallery-cell">
           <img src="/images/gallery-team3.JPG" alt="Team work" />
+        </div>
+      </section>
+
+      <section id="contact-inline" className="about-contact-wrap">
+        <div className="hero-panel contact-hero">
+          <div className="contact-hero-main">
+            <div>
+              <p className="hero-kicker">{copy.touch}</p>
+              <h1>{copy.contactTitle}</h1>
+            </div>
+            <p className="hero-copy">{copy.contactSubtitle}</p>
+            <div className="contact-actions">
+              <a className="contact-button contact-button-primary" href="mailto:office@aleradita.com">
+                {copy.contactCall}
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

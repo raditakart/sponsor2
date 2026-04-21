@@ -41,17 +41,20 @@ export default function PartnersPage({ language = 'en' }) {
         title: 'Official sponsors and technical partners 2026',
         subtitle: 'Proudly supported by world-class logistics, transport and engineering specialists fueling Alexandru Radita’s racing season.',
         ctaTitle: 'Join the Team',
-        ctaBody: 'Interested in partnering for the 2026 season? Reach out via Contact to explore branded activation, logistics coordination, and trackside exposure.',
+        ctaBody: 'Interested in partnering for the 2026 season? Reach out via Contact',
         visit: 'Visit website',
       };
   return (
     <main className="page page-accent partners-page">
       <section className="hero-panel partners-hero">
-        <div>
+        <div className="partners-hero-main">
           <p className="hero-kicker">{copy.kicker}</p>
           <h1>{copy.title}</h1>
+          <p className="hero-copy">{copy.subtitle}</p>
         </div>
-        <p className="hero-copy">{copy.subtitle}</p>
+        <div className="partners-hero-media">
+          <img src="/images/calendar.jpeg" alt="Racing calendar" loading="lazy" />
+        </div>
       </section>
 
       <section className="partner-grid">
