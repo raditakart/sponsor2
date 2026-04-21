@@ -182,7 +182,7 @@ export default function CalendarPage({ language = 'en' }) {
                 {isFinished ? (
                   <button
                     type="button"
-                    className="calendar-event-row calendar-event-toggle"
+                    className={`calendar-event-row calendar-event-toggle${isOpen ? ' is-open' : ''}`}
                     onClick={() => setOpenRaceKey(isOpen ? null : event.key)}
                     aria-expanded={isOpen}
                   >

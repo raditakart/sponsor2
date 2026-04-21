@@ -216,11 +216,17 @@ export default function AboutPage({ language = 'en' }) {
           display:grid;
           grid-template-columns:1fr 1fr;
         }
-        @media(max-width:900px){#s1{grid-template-columns:1fr}}
+        @media(max-width:900px){
+          #s1{
+            grid-template-columns:1fr;
+            min-height:auto;
+          }
+        }
 
         .cover-img{
           position:relative;
           overflow:hidden;
+          min-height:420px;
         }
         .cover-img img{
           width:100%;height:100%;
@@ -240,8 +246,14 @@ export default function AboutPage({ language = 'en' }) {
           background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,245,241,0.96));
         }
         @media(max-width:900px){
-          .cover-img{display:none}
-          .cover-content{padding:60px 28px}
+          .cover-img{
+            display:block;
+            min-height:320px;
+          }
+          .cover-img::after{
+            background:linear-gradient(to top, rgba(255,255,255,0.18) 0%, transparent 45%);
+          }
+          .cover-content{padding:34px 22px 38px}
         }
 
         .cover-name{font-size:clamp(60px,8vw,100px)}
